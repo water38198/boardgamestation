@@ -39,7 +39,7 @@ formBtn.addEventListener("click", function (e) {
         obj.email = userEmail;
         obj.password = userPassword;
         axios
-            .post("https://vercel.com/water38198/json-server-vercel/users", obj)
+            .post("https://json-server-vercel-iota.vercel.app/users", obj)
             .then((res) => {
                 console.log(res);
             });
