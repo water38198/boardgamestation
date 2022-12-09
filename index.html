@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>桌遊新聞站</title>
+        <!-- Google Font -->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC"
+        />
+        <link
+            rel="shortcut icon"
+            href="img/dice_icon.png"
+            type="image/x-icon"
+        />
+        <!-- header、nav、footer的CSS -->
+        <link rel="stylesheet" href="css/all.css" />
+        <!-- 首頁的CSS -->
+        <link rel="stylesheet" href="css/index.css" />
+        <!-- axios -->
+        <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        <!-- 表頭 -->
+        <header>
+            <div class="header-container">
+                <div class="header-logo">
+                    <a href="index.html"><img src="img/logo.png" alt="" /></a>
+                </div>
+                <!-- 導覽列 -->
+                <nav>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="category.html?category=latest" class="nav-tab"
+                                >最新消息</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="category.html?category=columns&category=news"
+                                class="nav-tab"
+                                >專欄新聞</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="category.html?category=preorder"
+                                class="nav-tab"
+                                >眾籌預購</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="category.html?category=review"
+                                class="nav-tab"
+                                >開箱平測</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="category.html?category=rookie"
+                                class="nav-tab"
+                                >新手教學</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#" class="nav-tab ham-menu-userName"
+                                ><img src="img/icon-avatar.png" alt="" />
+                                會員名稱</a
+                            >
+                        </li>
+                        <li>
+                            <a href="login.html" class="nav-tab ham-menu-login"
+                                >登入</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="register.html"
+                                class="nav-tab ham-menu-register"
+                                >註冊</a
+                            >
+                        </li>
+                    </ul>
+                    <div class="nav-search">
+                        <a href=""><img src="img/icon-search.png" alt="" /></a>
+                        <input type="text" placeholder="輸入關鍵字" />
+                    </div>
+                    <div class="nav-user">
+                        <a href="#" class="user-name no-login nav-tab"
+                            ><img src="img/icon-avatar.png" alt="" /><span
+                                >PayRoom</span
+                            ></a
+                        >
+                        <div class="no-login"></div>
+                        <a href="login.html" class="user-login">登入</a>
+                        <a href="register.html" class="user-register">註冊</a>
+                    </div>
+                    <div class="ham-menu">
+                        <a href="" class="ham-menu-icon ham-menu-serach"
+                            ><img src="img/icon-search.png" alt=""
+                        /></a>
+                        <a href="#" class="ham-menu-icon ham-menu-button"
+                            ><img src="img/icon-menu.png" alt=""
+                        /></a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- 文章區塊 -->
+        <main>
+            <section class="latest">
+                <div class="title-small">
+                    <img src="img/icon-title mark.png" alt="" />
+                    <h2>最新消息</h2>
+                </div>
+                <div class="latest-headline"></div>
+                <ul class="articles-list list-column">
+            <a href="#">
+              <img src="img/ten.jpg" alt="" />
+              <div class="articles-info">
+                <h3>新手入門桌遊精選Top 10</h3>
+                <div>
+                  <span>2022/12/5</span>
+                  <span>By PayRoom</span>
+                </div>
+              </div>
+              <div class="tab">
+                <span href="#" class="tab-rookies">入門</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="img/cyperpunk.jpg" alt="" />
+              <div class="articles-info">
+                <h3>《電馭叛客2077：夜城風雲》週二晚上9點!!在挖貝上線!</h3>
+                <div>
+                  <span>2022/12/5</span>
+                  <span>By PayRoom</span>
+                </div>
+              </div>
+              <div class="tab">
+                <span href="#" class="tab-crowdfunding">集資</span>
+              </div>
+            </a>
+          </li> -->
+                </ul>
+            </section>
+            <!-- 橫排開箱 -->
+            <section class="unboxings single-row">
+                <div class="single-row-container">
+                    <div class="title">
+                        <img src="img/icon-title mark.png" alt="" />
+                        <h2>開箱評測</h2>
+                    </div>
+                    <div class="title-small">
+                        <img src="img/icon-title mark.png" alt="" />
+                        <h2>開箱評測</h2>
+                    </div>
+                    <ul class="articles-list-row"></ul>
+                    <div class="more">
+                        <a href="category.html?category=review"
+                            >看更多<img src="img/icon-more.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <!-- 雙欄新聞、專欄 -->
+            <div class="double-columns">
+                <section class="news">
+                    <div class="title">
+                        <img src="img/icon-title mark.png" alt="" />
+                        <h2>桌遊新聞</h2>
+                        <div class="more">
+                            <a href="ategory.html?category=news"
+                                >看更多<img src="img/icon-more.png" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="title-small">
+                        <img src="img/icon-title mark.png" alt="" />
+                        <h2>桌遊新聞</h2>
+                    </div>
+                    <ul class="articles-list list-column"></ul>
+                </section>
+                <section class="columns">
+                    <div class="title">
+                        <img src="img/icon-title mark.png" alt="" />
+
+                        <h2>專欄文章</h2>
+                        <div class="more">
+                            <a href="ategory.html?category=columns"
+                                >看更多<img src="img/icon-more.png" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="title-small">
+                        <img src="img/icon-title mark.png" alt="" />
+                        <h2>專欄文章</h2>
+                    </div>
+                    <ul class="articles-list list-column"></ul>
+                </section>
+            </div>
+            <!-- 橫排預購 -->
+            <section class="preorders single-row">
+                <div class="single-row-container">
+                    <div class="title">
+                        <img src="img/icon-title mark.png" alt="" />
+                        <h2>預購眾籌</h2>
+                    </div>
+                    <div class="title-small">
+                        <img src="img/icon-title mark.png" alt="" />
+                        <h2>預購眾籌</h2>
+                    </div>
+                    <ul class="articles-list-row"></ul>
+                    <div class="more">
+                        <a href="ategory.html?category=preorder"
+                            >看更多<img src="img/icon-more.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <!-- 大文章 -->
+            <section class="rookie single-row big">
+                <div class="big-container">
+                    <div class="title">
+                        <img src="img/icon-title mark.png" alt="" />
+                        <h2>新手入門</h2>
+                    </div>
+                    <div class="title-small">
+                        <img src="img/icon-title mark.png" alt="" />
+                        <h2>新手入門</h2>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="big-article-img">
+                                    <img src="img/Tenpenny Pakrs.jpg" alt="" />
+                                </div>
+                                <div class="big-ariticle-info">
+                                    <h3>
+                                        《Tenpenny Pakrs坦帕妮主題樂園》
+                                        繁中版預購!
+                                    </h3>
+                                    <p>
+                                        想要入坑卻不知道如何開始嗎?想要砌桌遊牆卻無從下手嗎?想要的話可以全部給你，去找吧！
+                                        我把所有答案都放在文章裡面。
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="more">
+                        <a href="ategory.html?category=rookie">看更多<img src="img/icon-more.png" alt="" /> </a>
+                    </div>
+                </div>
+            </section>
+            <!-- RWD -->
+        </main>
+        <!-- 表尾 -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-slogan">
+                    <div class="footer-logo">
+                        <a href="#"><img src="img/logo.png" alt="" /></a>
+                    </div>
+                    <p>
+                        整合台灣國內所有桌遊資訊<br />
+                        幫助老玩家不遺漏任何新品 協助新手了解最新桌遊動態
+                    </p>
+                </div>
+
+                <div class="footer-contact">
+                    <ul>
+                        <li>
+                            <a href="#"
+                                ><img src="img/icon-twitter.png" alt=""
+                            /></a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img src="img/icon-facebook.png" alt=""
+                            /></a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img src="img/icon-instagram.png" alt=""
+                            /></a>
+                        </li>
+                    </ul>
+                    <p class="email">water38198@gmail.com</p>
+                    <p class="statement">本作品僅用於面試，不具商業用途</p>
+                </div>
+            </div>
+        </footer>
+        <script src="js/config.js"></script>
+        <script src="js/all.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>

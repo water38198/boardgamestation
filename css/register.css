@@ -1,0 +1,79 @@
+main {
+    padding: 80px 0;
+}
+.register,
+.login {
+    max-width: 1110px;
+    margin: auto;
+}
+.register h2,
+.login h2 {
+    color: #4e4e4e;
+    font-size: 40px;
+    line-height: 120%;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.userInfo-form {
+    padding-top: 20px;
+}
+.userInfo-inputGroup {
+    max-width: 365px;
+    margin: 0 auto 30px;
+}
+.userInfo-inputGroup label {
+    display: block;
+    font-size: 24px;
+    color: #4e4e4e;
+    margin-bottom: 12px;
+}
+.userInfo-input {
+    position: relative;
+}
+.userInfo-input input {
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    text-indent: 1rem;
+    margin-right: 10px;
+}
+.userInfo-input p {
+    position: absolute;
+    left: 102%;
+    top: 20%;
+    white-space: nowrap;
+    color: #c72424;
+    font-size: 20px;
+}
+.register-btn,
+.login-btn {
+    display: block;
+    min-width: 225px;
+    min-height: 48px;
+    background-color: #4e4e4e;
+    color: white;
+    margin: 60px auto;
+    cursor: pointer;
+
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+}
+.register-btn:hover,
+.login-btn:hover {
+    background-color: hsl(0, 0%, 40%);
+}
+.userInfo-footer {
+    text-align: center;
+}
+.login-link {
+    color: #737373;
+    margin-left: 5px;
+}
+.register-link {
+    background-color: hsl(45, 100%, 50%);
+    padding: 5px 10px;
+    color: black;
+    margin-left: 5px;
+}

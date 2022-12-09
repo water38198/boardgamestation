@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>桌遊新聞站</title>
+        <!-- Google Font -->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC"
+        />
+        <link
+            rel="shortcut icon"
+            href="img/dice_icon.png"
+            type="image/x-icon"
+        />
+        <!-- header、nav、footer的CSS -->
+        <link rel="stylesheet" href="css/all.css" />
+        <!-- LOGIN的CSS 與REGISTER共用 -->
+        <link rel="stylesheet" href="css/register.css" />
+        <!-- axios -->
+        <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+        <!-- VALIDATE.JS -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+        <!-- sweetalert2 -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+
+    <body>
+        <!-- 表頭 -->
+        <header>
+            <div class="header-container">
+                <div class="header-logo">
+                    <a href="index.html"><img src="img/logo.png" alt="" /></a>
+                </div>
+                <!-- 導覽列 -->
+                <nav>
+                    <ul class="nav-list">
+                        <li><a href="#" class="nav-tab">最新消息</a></li>
+                        <li><a href="#" class="nav-tab">專欄文章</a></li>
+                        <li><a href="#" class="nav-tab">眾籌預購</a></li>
+                        <li><a href="#" class="nav-tab">開箱平測</a></li>
+                        <li><a href="#" class="nav-tab">新手教學</a></li>
+                        <li>
+                            <a href="#" class="nav-tab ham-menu-userName"
+                                ><img src="img/icon-avatar.png" alt="" />
+                                會員名稱</a
+                            >
+                        </li>
+                        <li>
+                            <a href="login.html" class="nav-tab ham-menu-login"
+                                >登入</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="register.html"
+                                class="nav-tab ham-menu-register"
+                                >註冊</a
+                            >
+                        </li>
+                    </ul>
+                    <div class="nav-search">
+                        <a href=""><img src="img/icon-search.png" alt="" /></a>
+                        <input type="text" placeholder="輸入關鍵字" />
+                    </div>
+                    <div class="nav-user">
+                        <a href="#" class="user-name no-login nav-tab"
+                            ><img src="img/icon-avatar.png" alt="" /><span
+                                >PayRoom</span
+                            ></a
+                        >
+                        <div class="no-login"></div>
+                        <a href="login.html" class="user-login">登入</a>
+                        <a href="register.html" class="user-register">註冊</a>
+                    </div>
+                    <div class="ham-menu">
+                        <a href="" class="ham-menu-icon ham-menu-serach"
+                            ><img src="img/icon-search.png" alt=""
+                        /></a>
+                        <a href="#" class="ham-menu-icon ham-menu-button"
+                            ><img src="img/icon-menu.png" alt=""
+                        /></a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- 註冊 -->
+        <main>
+            <section class="login">
+                <h2>登入</h2>
+                <form action="" class="userInfo-form">
+                    <div class="userInfo-inputGroup">
+                        <label for="Email">Email:</label>
+                        <div class="userInfo-input">
+                            <input
+                                type="text"
+                                name="Email"
+                                id="userEmail"
+                                placeholder="請輸入Email"
+                            />
+                            <p class="input-message" data-message="Email"></p>
+                        </div>
+                    </div>
+                    <div class="userInfo-inputGroup">
+                        <label for="密碼">密碼:</label>
+                        <div class="userInfo-input">
+                            <input
+                                type="password"
+                                name="密碼"
+                                id="userPassword"
+                                placeholder="請輸入密碼"
+                            />
+                            <p class="input-message" data-message="密碼"></p>
+                        </div>
+                    </div>
+                    <input type="submit" value="確定" class="login-btn" />
+                    <div class="userInfo-footer">
+                        <span>還沒有加入會員嗎?</span
+                        ><a href="register.html" class="register-link">註冊</a>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <!-- 表尾 -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-slogan">
+                    <div class="footer-logo">
+                        <a href="#"><img src="img/logo.png" alt="" /></a>
+                    </div>
+                    <p>
+                        整合台灣國內所有桌遊資訊<br />
+                        幫助老玩家不遺漏任何新品 協助新手了解最新桌遊動態
+                    </p>
+                </div>
+                <div class="footer-contact">
+                    <ul>
+                        <li>
+                            <a href="#"
+                                ><img src="img/icon-twitter.png" alt=""
+                            /></a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img src="img/icon-facebook.png" alt=""
+                            /></a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img src="img/icon-instagram.png" alt=""
+                            /></a>
+                        </li>
+                    </ul>
+                    <p class="email">water38198@gmail.com</p>
+                    <p class="statement">本作品僅用於面試，不具商業用途</p>
+                </div>
+            </div>
+        </footer>
+        <script src="js/config.js"></script>
+        <script src="js/all.js"></script>
+        <script src="js/login.js"></script>
+    </body>
+</html>
