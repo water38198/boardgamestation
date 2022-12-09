@@ -38,9 +38,11 @@ formBtn.addEventListener("click", function (e) {
         const obj = {};
         obj.email = userEmail;
         obj.password = userPassword;
-        axios.post(`${api_path}/users`, obj).then((res) => {
-            console.log(res);
-            Swal.fire({ title: "登入成功", confirmButtonColor: "#4e4e4e" });
-        });
+        axios
+            .post(`https://json-server-vercel-iota.vercel.app/login`, obj)
+            .then((res) => {
+                console.log(res);
+                Swal.fire({ title: "登入成功", confirmButtonColor: "#4e4e4e" });
+            });
     }
 });
