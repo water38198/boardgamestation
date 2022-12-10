@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "json-server": "^0.17.1",
-    "json-server-auth": "^2.1.0"
+    "eslint": "^8.29.0"
   }
 }

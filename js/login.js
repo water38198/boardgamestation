@@ -42,7 +42,10 @@ formBtn.addEventListener("click", function (e) {
             .post(`https://json-server-vercel-iota.vercel.app/login`, obj)
             .then((res) => {
                 console.log(res);
-                Swal.fire({ title: "登入成功", confirmButtonColor: "#4e4e4e" });
+                Swal.fire({
+                    title: "登入成功!",
+                    confirmButtonColor: "#4e4e4e",
+                });
             });
     }
 });
