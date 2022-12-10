@@ -231,7 +231,7 @@
 .big-container a:hover {
   background-color: hsla(0, 0%, 80%, 0.25);
 }
-.big-ariticle-info {
+.big-article-info {
   padding-left: 24px;
   width: 580px;
   color: #4e4e4e;
@@ -239,15 +239,20 @@
   flex-direction: column;
   justify-content: center;
 }
-.big-ariticle-info h3 {
+.big-article-info h3 {
   font-size: 28px;
   font-weight: 700;
   line-height: 120%;
   margin-bottom: 24px;
 }
-.big-ariticle-info p {
+.big-article-info p {
   font-size: 16px;
   line-height: 150%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 @media (max-width: 1300px) {
   .latest {

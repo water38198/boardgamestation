@@ -170,7 +170,7 @@ function renderRookieList() {
         <div class="big-article-img">
           <img src="${article.imgUrl}" alt="" />
         </div>
-        <div class="big-ariticle-info">
+        <div class="big-article-info">
           <h3>${article.title}</h3>
           <p>${article.content}</p>
         </div>
