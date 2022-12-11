@@ -12,6 +12,18 @@ hamMenuSearch.addEventListener("click", function (e) {
     navSearch.classList.toggle("search-show");
 });
 
+
+const searchInput = document.querySelector(".nav-search input")
+const searchBtn = document.querySelector(".nav-search a")
+
+searchBtn.addEventListener("click",e=>{
+    e.preventDefault();
+    const value = searchInput.value;
+    location.href = `category.html?q=${value}`
+})
+
+
+
 // [    {
 //   "id": 1,
 //   "email": "water38198@gmail.com",
