@@ -17,12 +17,10 @@ function init() {
 
 init();
 
-function getAllArticleData(){}
 
 function renderHeadline() {
     const latestHeadline = document.querySelector(".latest-headline");
     const headlineData = articlesData[0];
-    console.log(headlineData)
     // 設定背景大圖
     latestHeadline.setAttribute(
         "style",

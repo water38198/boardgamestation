@@ -23,7 +23,28 @@ searchBtn.addEventListener("click",e=>{
 })
 
 
+function loginStatus(){
+    token = localStorage.getItem("token")||"";
+    const userId = localStorage.getItem("userId")||""
+    const userNickname = localStorage.getItem("userNickname")||""
+    const userEmail = localStorage.getItem("userEmail")||"";
 
+    const userSection = document.querySelector(".nav-user");
+    const loginSection = document.querySelector(".nav-login")
+    console.log(token)
+    if(userId ===""||userNickname===""||userEmail ==="" || token ==="" ){
+        userSection.setAttribute("style","display:none")
+        loginSection.setAttribute("style","display:block")
+    }else{
+        userSection.innerHTML = `<a href="user.html?id=${userId}" class="user-name nav-tab">
+                                    <img src="img/icon-avatar.png" alt="" />
+                                        <span>${userNickname}</span>
+                                </a>`
+        userSection.setAttribute("style","display:flex")
+        loginSection.setAttribute("style","display:none")
+    }
+}
+loginStatus()
 // [    {
 //   "id": 1,
 //   "email": "water38198@gmail.com",
