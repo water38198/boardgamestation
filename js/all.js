@@ -14,7 +14,7 @@ hamMenuSearch.addEventListener("click", function (e) {
 });
 
 
-const searchInput = document.querySelector(".nav-search input")
+
 const searchBtn = document.querySelector(".nav-search a")
 //點擊放大鏡按鈕執行搜尋
 searchBtn.addEventListener("click",e=>{
@@ -22,6 +22,8 @@ searchBtn.addEventListener("click",e=>{
     const value = searchInput.value;
     location.href = `category.html?q=${value}`
 })
+
+const searchInput = document.querySelector(".nav-search input")
 //按下Enter鍵搜尋
 searchInput.addEventListener("keydown", e => {
     if(e.keyCode===13){
@@ -31,6 +33,8 @@ searchInput.addEventListener("keydown", e => {
 
 })
 
+
+const dropList = document.querySelector(".nav-user-dropList ul")
 //登入狀態函式
 function loginStatus(){
     //從localStorage抓會員資料，如果沒有設為空字串
@@ -42,7 +46,8 @@ function loginStatus(){
     const userSection = document.querySelector(".nav-user");
     const loginSection = document.querySelector(".nav-login")
 
-    //如果資料不完整
+
+    //如果資料不完整或是未登入狀態
     if(userId ===""||userNickname===""||userEmail ==="" || token ==="" ){
         //將 登入&註冊 顯示
         loginSection.classList.toggle("toshow");
@@ -50,6 +55,12 @@ function loginStatus(){
         //顯示用戶名稱
         document.querySelector(".user-name span").textContent =userNickname
         userSection.classList.toggle("toshow");
+        //id埋入下拉選單a連結裡面
+        dropList.innerHTML = `
+        <li><a href="user.html/info?userId=${userId}">會員資料</a></li>
+        <li><a href="user.html/bookmark?userId=${userId}">收藏列表</a></li>
+        <li><a href="" class="user-logOut">登出</a></li>
+        `
     }
 }
 //執行函式
@@ -57,11 +68,18 @@ loginStatus()
 
 // 會員選單點擊後固定
 document.querySelector(".user-name").addEventListener("click",e=>{
-    document.querySelector(".nav-user-dropList").classList.toggle("toshow")
+    dropList.classList.toggle("toshow")
 })
-
-
-
+// 點擊下拉選單的選項執行
+dropList.addEventListener("click",e=>{
+    const target = e.target.getAttribute("class")
+    // 登出-清空localStorage、重新整理
+    if(target === "user-logOut"){
+        e.preventDefault();
+        localStorage.clear();
+        location.reload();
+    }
+})
 
 
 
