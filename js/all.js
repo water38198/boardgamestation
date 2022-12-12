@@ -1,3 +1,4 @@
+// RWD nav列
 const hamMenu = document.querySelector(".ham-menu-button");
 hamMenu.addEventListener("click", function (e) {
     e.preventDefault();
@@ -15,15 +16,24 @@ hamMenuSearch.addEventListener("click", function (e) {
 
 const searchInput = document.querySelector(".nav-search input")
 const searchBtn = document.querySelector(".nav-search a")
-
+//點擊放大鏡按鈕執行搜尋
 searchBtn.addEventListener("click",e=>{
     e.preventDefault();
     const value = searchInput.value;
     location.href = `category.html?q=${value}`
 })
+//按下Enter鍵搜尋
+searchInput.addEventListener("keydown", e => {
+    if(e.keyCode===13){
+    const value = searchInput.value;
+    location.href = `category.html?q=${value}`
+    }
 
+})
 
+//登入狀態函式
 function loginStatus(){
+    //從localStorage抓會員資料，如果沒有設為空字串
     token = localStorage.getItem("token")||"";
     const userId = localStorage.getItem("userId")||""
     const userNickname = localStorage.getItem("userNickname")||""
@@ -31,20 +41,32 @@ function loginStatus(){
 
     const userSection = document.querySelector(".nav-user");
     const loginSection = document.querySelector(".nav-login")
-    console.log(token)
+
+    //如果資料不完整
     if(userId ===""||userNickname===""||userEmail ==="" || token ==="" ){
-        userSection.setAttribute("style","display:none")
-        loginSection.setAttribute("style","display:block")
+        //將 登入&註冊 顯示
+        loginSection.classList.toggle("toshow");
     }else{
-        userSection.innerHTML = `<a href="user.html?id=${userId}" class="user-name nav-tab">
-                                    <img src="img/icon-avatar.png" alt="" />
-                                        <span>${userNickname}</span>
-                                </a>`
-        userSection.setAttribute("style","display:flex")
-        loginSection.setAttribute("style","display:none")
+        //顯示用戶名稱
+        document.querySelector(".user-name span").textContent =userNickname
+        userSection.classList.toggle("toshow");
     }
 }
+//執行函式
 loginStatus()
+
+// 會員選單點擊後固定
+document.querySelector(".user-name").addEventListener("click",e=>{
+    document.querySelector(".nav-user-dropList").classList.toggle("toshow")
+})
+
+
+
+
+
+
+
+
 // [    {
 //   "id": 1,
 //   "email": "water38198@gmail.com",

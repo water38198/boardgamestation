@@ -132,6 +132,7 @@ table {
 img {
     max-width: 100%;
     max-height: 100%;
+    object-fit: cover;
 }
 body {
     font-size: 16px;
@@ -213,6 +214,29 @@ nav {
 .nav-user {
     height: 100%;
     display: none;
+    position: relative;
+}
+.nav-user-dropList{
+    display: none;
+    position: absolute;
+    width: 100%;
+    top:44px;
+    background-color: white;
+    box-shadow: 0px 1px 10px #4e4e4e;
+}
+
+.nav-user-dropList a{
+    display: block;
+    text-align: center;
+    color: #4e4e4e;
+    padding: 20px 10px;
+}
+.nav-user-dropList a:hover{
+    background-color: hsl(0,0%,80%);
+}
+
+.nav-user:hover .nav-user-dropList{
+    display: block;
 }
 .user-name {
     padding-left: 0;
@@ -223,6 +247,9 @@ nav {
 .user-name img {
     width: 44px;
     margin-right: 11px;
+}
+.nav-login{
+    display: none;
 }
 .user-login {
     color: white;
@@ -300,8 +327,9 @@ nav {
         background-color: hsl(0, 0%, 40%);
     }
     .nav-user {
-        display: none;
+        display: flex;
     }
+
     .nav-search {
         max-width: 0;
         overflow: hidden;
@@ -346,6 +374,9 @@ nav {
     main {
         padding-top: 40px;
     }
+}
+.toshow{
+    display: block;
 }
 
 /* 中間區域 */
