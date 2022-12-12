@@ -1,6 +1,6 @@
 const categoryTitle = document.querySelector(".category-title");
 console.log(categoryTitle)
-
+const articleList = document.querySelector(".category-articles-list");
 
 
 //初始化
@@ -17,7 +17,17 @@ function getCategory() {
         const searchName = location.href.split("?")[1];
         //抓取相關文章並排序(日期最近)
         axios.get(`${api_path}/articles?${searchName}&_sort=timestap&_order=desc`).then(res=>{
-            renderCategory(res.data)
+            renderCategory(res.data);
+            if(res.data.length === 0){
+                articleList.innerHTML = `<div class="cantFind">
+                                            <h3>
+                                            很抱歉找不到您要的資料
+                                            </h3>
+                                            <div>
+                                                <img src="img/cantFind.jpg" alt="">
+                                            </div>
+                                        </div>`
+            }
             categoryTitle.textContent = `搜尋 ${decodeURI(location.href.split("?q=")[1])} 的結果如下`;
         })
     }else{
@@ -50,7 +60,6 @@ function getCategory() {
 
 function renderCategory(data){
     let str = "";
-    const articleList = document.querySelector(".category-articles-list");
     data.forEach(article=>{
         str+=`                    <li>
         <a href="#">

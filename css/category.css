@@ -28,7 +28,6 @@
 }
 .category-articles-list a:hover{
     background-color: hsla(0, 0%, 80%, 0.25);
-
 }
 
 .article-img {
@@ -74,4 +73,18 @@
 }
 .article-tab:hover{
     text-decoration: underline;
+}
+
+.cantFind h3{
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #737373;
+
+}
+.cantFind img{
+    max-width: 60%;
+    display: block;
+    margin: 0 auto;
+
 }
