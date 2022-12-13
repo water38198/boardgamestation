@@ -13,77 +13,78 @@ hamMenuSearch.addEventListener("click", function (e) {
     navSearch.classList.toggle("search-show");
 });
 
-
-
-const searchBtn = document.querySelector(".nav-search a")
+const searchBtn = document.querySelector(".nav-search a");
 //點擊放大鏡按鈕執行搜尋
-searchBtn.addEventListener("click",e=>{
+searchBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const value = searchInput.value;
-    location.href = `category.html?q=${value}`
-})
+    location.href = `category.html?q=${value}`;
+});
 
-const searchInput = document.querySelector(".nav-search input")
+const searchInput = document.querySelector(".nav-search input");
 //按下Enter鍵搜尋
-searchInput.addEventListener("keydown", e => {
-    if(e.keyCode===13){
-    const value = searchInput.value;
-    location.href = `category.html?q=${value}`
+searchInput.addEventListener("keydown", (e) => {
+    if (e.keyCode === 13) {
+        const value = searchInput.value;
+        location.href = `category.html?q=${value}`;
     }
+});
 
-})
+const dropList = document.querySelector(".nav-user-dropList ul");
 
+// 載入localStorage參數
+token = localStorage.getItem("token") || "";
+const userId = localStorage.getItem("userId") || "";
+const userNickname = localStorage.getItem("userNickname") || "";
+const userEmail = localStorage.getItem("userEmail") || "";
+const userSection = document.querySelector(".nav-user");
+const loginSection = document.querySelector(".nav-login");
 
-const dropList = document.querySelector(".nav-user-dropList ul")
 //登入狀態函式
-function loginStatus(){
+function loginStatus() {
     //從localStorage抓會員資料，如果沒有設為空字串
-    token = localStorage.getItem("token")||"";
-    const userId = localStorage.getItem("userId")||""
-    const userNickname = localStorage.getItem("userNickname")||""
-    const userEmail = localStorage.getItem("userEmail")||"";
-
-    const userSection = document.querySelector(".nav-user");
-    const loginSection = document.querySelector(".nav-login")
-
-
     //如果資料不完整或是未登入狀態
-    if(userId ===""||userNickname===""||userEmail ==="" || token ==="" ){
+    if (
+        userId === "" ||
+        userNickname === "" ||
+        userEmail === "" ||
+        token === ""
+    ) {
         //將 登入&註冊 顯示
         loginSection.classList.toggle("toshow");
-    }else{
+    } else {
         //顯示用戶名稱
-        document.querySelector(".user-name span").textContent =userNickname
+        document.querySelector(".user-name span").textContent = userNickname;
         userSection.classList.toggle("toshow");
         //id埋入下拉選單a連結裡面
         dropList.innerHTML = `
-        <li><a href="user.html/info?userId=${userId}">會員資料</a></li>
-        <li><a href="user.html/bookmark?userId=${userId}">收藏列表</a></li>
+        <li><a href="user.html?profile">會員資料</a></li>
+        <li><a href="user.html?bookmark">收藏列表</a></li>
         <li><a href="" class="user-logOut">登出</a></li>
-        `
+        `;
     }
 }
 //執行函式
-loginStatus()
+loginStatus();
 
 // 會員選單點擊後固定
-document.querySelector(".user-name").addEventListener("click",e=>{
-    dropList.classList.toggle("toshow")
-})
+document.querySelector(".user-name").addEventListener("click", (e) => {
+    console.log(dropList.classList);
+    document.querySelector(".nav-user-dropList").classList.toggle("toshow");
+});
 // 點擊下拉選單的選項執行
-dropList.addEventListener("click",e=>{
-    const target = e.target.getAttribute("class")
+dropList.addEventListener("click", (e) => {
+    const target = e.target.getAttribute("class");
     // 登出-清空localStorage、重新整理
-    if(target === "user-logOut"){
+    if (target === "user-logOut") {
         e.preventDefault();
         localStorage.clear();
         location.reload();
+        if (location.href.includes("user.html")) {
+            location.href = "login.html";
+        }
     }
-})
-
-
-
-
+});
 
 // [    {
 //   "id": 1,

@@ -1,5 +1,4 @@
 const categoryTitle = document.querySelector(".category-title");
-console.log(categoryTitle)
 const articleList = document.querySelector(".category-articles-list");
 
 

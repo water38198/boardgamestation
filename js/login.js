@@ -18,11 +18,14 @@ const constraints = {
         },
     },
 };
-
+// 避免從登入→ 註冊 → 登入
+if (token !== "") {
+    history.go(-1);
+}
 // 預防表單按Enter鍵時會將資料submit
 const form = document.querySelector(".userInfo-form");
-form.addEventListener("keydown",e=> {
-    if(e.keyCode===13){
+form.addEventListener("keydown", (e) => {
+    if (e.keyCode === 13) {
         e.preventDefault();
         sentData(e);
     }
@@ -32,11 +35,11 @@ form.addEventListener("keydown",e=> {
 const formBtn = document.querySelector(".login-btn");
 formBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    sentData(e)
+    sentData(e);
 });
 
 // 送出資料的函式
-function sentData(e){
+function sentData(e) {
     e.preventDefault();
     const userPassword = document.querySelector("#userPassword").value;
     const userEmail = document.querySelector("#userEmail").value;
@@ -45,9 +48,9 @@ function sentData(e){
     // 驗證
     if (err) {
         // 先清空所有紅字提示
-        document.querySelectorAll(".input-message").forEach(p=>{
-            p.textContent =""
-        })
+        document.querySelectorAll(".input-message").forEach((p) => {
+            p.textContent = "";
+        });
         const errArr = Object.entries(err);
         errArr.forEach((err) => {
             const message = document.querySelector(
@@ -64,19 +67,20 @@ function sentData(e){
             .then((res) => {
                 console.log(res);
                 // 登入成功後將會員資料存放在localStorage
-                localStorage.setItem("token",res.data.accessToken);
-                localStorage.setItem("userId",res.data.user.id);
-                localStorage.setItem("userEmail",res.data.user.email);
-                localStorage.setItem("userNickname",res.data.user.nickname);
+                localStorage.setItem("token", res.data.accessToken);
+                localStorage.setItem("userId", res.data.user.id);
+                localStorage.setItem("userEmail", res.data.user.email);
+                localStorage.setItem("userNickname", res.data.user.nickname);
                 // 成功結果提示
                 Swal.fire({
                     title: "登入成功!",
-                    text:"即將返回上一頁，如果沒有自動跳轉請按確定",
+                    icon: "success",
+                    text: "即將返回上一頁，如果沒有自動跳轉請按確定",
                     confirmButtonColor: "#4e4e4e",
-                    timer: 1500
-                }).then(result=>{  
+                    timer: 1500,
+                }).then((result) => {
                     //點擊確認按鈕後，重置表單，返回上一頁
-                    if(result.isConfirmed){
+                    if (result.isConfirmed) {
                         gobackPage();
                         userInfoForm.reset();
                         // 如果是從註冊來的，返回上上一頁
@@ -85,26 +89,26 @@ function sentData(e){
                     gobackPage();
                     userInfoForm.reset();
                 });
-            }).catch(err=>{
+            })
+            .catch((err) => {
                 // 錯誤失敗提示
                 const errStr = err.response.data;
                 console.log(errStr);
                 Swal.fire({
-                    icon: 'error',
-                    title: '糟了....',
+                    icon: "error",
+                    title: "糟了....",
                     text: "帳號或密碼錯誤",
                     confirmButtonColor: "#4e4e4e",
-                })
+                });
             });
     }
-
 }
 // 返回上一頁函式
-function gobackPage(){
+function gobackPage() {
     const referer = document.referrer;
-    if(referer.includes("register.html")){
-        history.go(-2)
-    }else{
-        history.back()
+    if (referer.includes("register.html")) {
+        history.go(-2);
+    } else {
+        history.back();
     }
 }

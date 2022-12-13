@@ -1,0 +1,132 @@
+main {
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 40px 0px;
+    color: #4e4e4e;
+}
+
+
+.user-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+}
+
+
+
+.user-sidebar {
+    width: 180px;
+}
+
+.user-sidebar h3 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.user-sidebar h3 img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.user-sidebar ul {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user-sidebar ul li {
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+.user-sidebar ul li a {
+    color: #4e4e4e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-sidebar ul li a:hover {
+    color: hsl(0, 0%, 15%);
+}
+
+.user-sidebar ul img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.user-logout {
+    margin-top: auto;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+.user-main {
+    flex-grow: 1;
+    margin-left: 60px;
+    background-color: #fff;
+    padding: 20px 30px;
+
+}
+
+.user-main h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.user-main p {
+    color: #737373;
+}
+
+.user-form {
+    margin-top: 40px;
+    border-top: 1px solid hsl(0, 0%, 80%);
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.user-input-container {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.user-input-label {
+    width: 80px;
+    text-align: right;
+}
+
+.user-input-container input {
+    border: none;
+    background-color: #fff;
+    margin-right: 20px;
+}
+
+.user-input-container a {
+    font-size: 14px;
+    color: #4285f4;
+}
+
+.user-profile-btn input {
+    font-size: 18px;
+    padding: 4px 10px;
+    background-color: #737373;
+    color: #fff;
+    margin-left: 80px;
+}
+
+.user-profile-btn input:hover {
+    cursor: pointer;
+}
+
+.user-input-container .input-active {
+    border: #737373 1px solid;
+}

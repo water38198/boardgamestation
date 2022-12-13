@@ -298,38 +298,10 @@
   "users": [
     {
       "email": "water38198@gmail.com",
-      "password": "$2a$10$2eBDDE9vgWo/a5y5d1/Fc.aCOnU9ydke.f8.c/F.Zz4YOYHEbO9m2",
+      "password": "$2a$10$xGahwe6msymsDQHcEYTFwuOvz20musZuz.PDdVQ5vnfqsZCph78Qy",
       "nickname": "PayRoom",
-      "id": 1,
-      "isAdmin": true
-    },
-    {
-      "email": "test123@gmail.com",
-      "password": "$2a$10$Z8QoW0zwklOXkIWr11uXAuMCleJLBlzU.XBIldJX1GVJhLrnP381q",
-      "nickname": "test123",
       "isAdmin": false,
-      "id": 2
-    },
-    {
-      "email": "test456@gmai.com",
-      "password": "$2a$10$nGxaxQyXOvuKMAn5EYQyTe1Kcet3Mi6geeZCNSMVfVx2t//iovnnS",
-      "nickname": "test456",
-      "isAdmin": false,
-      "id": 3
-    },
-    {
-      "email": "test987@gmail.com",
-      "password": "$2a$10$3SinTEQW5OB2ckGv.OxGAuek0wwQYC9jgsGZ1kJzP2971bYD0MRmC",
-      "nickname": "test987",
-      "isAdmin": false,
-      "id": 4
-    },
-    {
-      "email": "ttt123@gmail.com",
-      "password": "$2a$10$zAWwqkk2zmUPbm9w0Mw3yORn33LXqm9Hejczwz2aHJju9vz3Miqma",
-      "nickname": "ttt123",
-      "isAdmin": false,
-      "id": 5
+      "id": 1
     }
   ],
   "bookmarks": [
