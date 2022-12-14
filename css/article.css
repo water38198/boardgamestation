@@ -1,0 +1,108 @@
+.article-main {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 10%;
+}
+
+.article-breadcrumbs {
+    display: flex;
+}
+
+.article-breadcrumbs>li+li::before {
+    color: #ccc;
+    content: "/";
+    padding: 0 5px;
+}
+
+.article-breadcrumbs li a {
+    color: #737373;
+}
+
+.article-breadcrumbs .active {
+    color: #4e4e4e;
+}
+
+.article-title {
+    font-size: 40px;
+    font-weight: 700;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: #424242;
+
+}
+
+.article-info {
+    display: flex;
+
+}
+
+.article-info li {
+    display: flex;
+    align-items: center;
+    color: #737373;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.article-info li img {
+    width: 16px;
+    margin-right: 5px;
+}
+
+.article-info .add-bookmark {
+    display: none;
+}
+
+.add-bookmark a {
+    color: #737373;
+}
+
+.article-info .remove-bookmark {
+    display: none;
+}
+
+.remove-bookmark {
+    color: #D7443E;
+}
+
+.toshow {
+    display: flex !important;
+}
+
+.article-content {
+    padding: 40px 20px;
+}
+
+.article-img {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.article-img img {
+    max-width: 60%;
+}
+
+.article-content p {
+    font-size: 20px;
+    color: #424242;
+    line-height: 140%;
+}
+
+.article-tags {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+}
+
+.article-tags a {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    height: 20px;
+    color: #737373;
+    margin-right: 10px;
+}
+
+.article-tags img {
+    margin-right: 3px;
+}

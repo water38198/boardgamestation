@@ -18,9 +18,11 @@
         <!-- header、nav、footer的CSS -->
         <link rel="stylesheet" href="css/all.css" />
         <!-- 首頁的CSS -->
-        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/article.css" />
         <!-- axios -->
         <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+                <!-- sweetalert2 -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
 
     <body>
@@ -121,109 +123,33 @@
 
         <!-- 文章區塊 -->
         <main>
-            <section class="latest">
-                <div class="title-small">
-                    <img src="img/icon-title mark.png" alt="" />
-                    <h2>最新消息</h2>
-                </div>
-                <div class="latest-headline"></div>
-                <ul class="index-articles-list list-column">
-                </ul>
-            </section>
-            <!-- 橫排開箱 -->
-            <section class="unboxings single-row">
-                <div class="single-row-container">
-                    <div class="title">
-                        <img src="img/icon-title mark.png" alt="" />
-                        <h2>開箱評測</h2>
-                    </div>
-                    <div class="title-small">
-                        <img src="img/icon-title mark.png" alt="" />
-                        <h2>開箱評測</h2>
-                    </div>
-                    <ul class="index-articles-list-row"></ul>
-                    <div class="more">
-                        <a href="category.html?category=review&name=開箱評測"
-                            >看更多<img src="img/icon-more.png" alt="" />
-                        </a>
-                    </div>
-                </div>
-            </section>
-            <!-- 雙欄新聞、專欄 -->
-            <div class="double-columns">
-                <section class="news">
-                    <div class="title">
-                        <img src="img/icon-title mark.png" alt="" />
-                        <h2>桌遊新聞</h2>
-                        <div class="more">
-                            <a href="category.html?category=news&name=桌遊新聞"
-                                >看更多<img src="img/icon-more.png" alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="title-small">
-                        <img src="img/icon-title mark.png" alt="" />
-                        <h2>桌遊新聞</h2>
-                    </div>
-                    <ul class="index-articles-list list-column"></ul>
-                </section>
-                <section class="columns">
-                    <div class="title">
-                        <img src="img/icon-title mark.png" alt="" />
-
-                        <h2>專欄文章</h2>
-                        <div class="more">
-                            <a href="category.html?category=columns&name=專欄文章"
-                                >看更多<img src="img/icon-more.png" alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="title-small">
-                        <img src="img/icon-title mark.png" alt="" />
-                        <h2>專欄文章</h2>
-                    </div>
-                    <ul class="index-articles-list list-column"></ul>
-                </section>
-            </div>
-            <!-- 橫排預購 -->
-            <section class="preorders single-row">
-                <div class="single-row-container">
-                    <div class="title">
-                        <img src="img/icon-title mark.png" alt="" />
-                        <h2>預購眾籌</h2>
-                    </div>
-                    <div class="title-small">
-                        <img src="img/icon-title mark.png" alt="" />
-                        <h2>預購眾籌</h2>
-                    </div>
-                    <ul class="index-articles-list-row"></ul>
-                    <div class="more">
-                        <a href="category.html?category=preorder&name=預購眾籌"
-                            >看更多<img src="img/icon-more.png" alt="" />
-                        </a>
-                    </div>
-                </div>
-            </section>
-            <!-- 大文章 -->
-            <section class="rookie single-row big">
-                <div class="big-container">
-                    <div class="title">
-                        <img src="img/icon-title mark.png" alt="" />
-                        <h2>新手入門</h2>
-                    </div>
-                    <div class="title-small">
-                        <img src="img/icon-title mark.png" alt="" />
-                        <h2>新手入門</h2>
-                    </div>
-                    <ul>
+            <section class="article-main">
+                    <ul class="article-breadcrumbs">
+                        <li><a href="index.html">首頁</a></li>
+                        <li><a href="">分類</a></li>
+                        <li><a href="" class="active">《That Time You Killed Me 煞有其時 預購》</a></li>
                     </ul>
-                    <div class="more">
-                        <a href="ategory.html?category=rookie">看更多<img src="img/icon-more.png" alt="" /> </a>
+                    <h1 class="article-title">《That Time You Killed Me 煞有其時 預購》</h1>
+                    <ul class="article-info">
+                        <li> <img src="img/icon-avatar-black.png" alt=""> 作者</li>
+                        <li> <img src="img/icon-clock.png" alt="">時間</li>
+                        <li>14人收藏</li>
+                        <li><a href="#" class="add-bookmark"><img src="img/heart-empty.png" alt="" >加入收藏</a></li>
+                        <li><a href="#" class="remove-bookmark"><img src="img/heart-full.png" alt="" >已收藏</a></li>
+                    </ul>
+                    <div class="article-content">
+                        <div class="article-img">
+                        <img src="img/article18.jpg" alt="">
+                        </div>
+                        <p>"2022 最別出心裁的雙人遊戲 That Time You Killed Me 煞有其時，是一款在 BGG 勇奪 7.7 分高分評價的兩人抽象期類遊戲，別讓未來的你殺了你自己！在遊戲中，玩家雙方是時空旅行的發明者，為了證明自己才是時空旅行的發明者，所以打算將對手滅口，從現在、未來甚至到過去，如何欲判你對手的行動並搶先一步在不同的時空之間穿梭壓制對方，就將成為你重要的人生目標！"</p>
                     </div>
-                </div>
             </section>
-            <!-- RWD -->
         </main>
+
+
+
+
+
         <!-- 表尾 -->
         <footer>
             <div class="footer-container">
@@ -262,6 +188,6 @@
         </footer>
         <script src="js/config.js"></script>
         <script src="js/all.js"></script>
-        <script src="js/index.js"></script>
+        <script src="js/article.js"></script>
     </body>
 </html>

@@ -69,26 +69,20 @@ function sentData(e) {
                 // 登入成功後將會員資料存放在localStorage
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("userId", res.data.user.id);
-                localStorage.setItem("userEmail", res.data.user.email);
+                // localStorage.setItem("userEmail", res.data.user.email);
                 localStorage.setItem("userNickname", res.data.user.nickname);
                 // 成功結果提示
                 Swal.fire({
                     title: "登入成功!",
                     icon: "success",
-                    text: "即將返回上一頁，如果沒有自動跳轉請按確定",
-                    confirmButtonColor: "#4e4e4e",
-                    timer: 1500,
-                }).then((result) => {
-                    //點擊確認按鈕後，重置表單，返回上一頁
-                    if (result.isConfirmed) {
-                        gobackPage();
-                        userInfoForm.reset();
-                        // 如果是從註冊來的，返回上上一頁
-                    }
-                    // 不點擊也會1500毫秒後自動轉
+                    text: "即將返回上一頁",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+                setTimeout(() => {
                     gobackPage();
                     userInfoForm.reset();
-                });
+                }, 2000);
             })
             .catch((err) => {
                 // 錯誤失敗提示

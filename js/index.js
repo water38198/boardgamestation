@@ -6,7 +6,7 @@ function init() {
     axios.get(`${api_path}/articles?_sort=timestap&_order=desc`).then((res) => {
         articlesData = res.data;
         renderHeadline();
-        renderlatestArticleList();
+        renderLatestList();
         renderNewsList();
         renderColumnsList();
         renderReviewList();
@@ -26,7 +26,7 @@ function renderHeadline() {
         `background-image:url(${headlineData.imgUrl})`
     );
     latestHeadline.innerHTML = `        <a
-    href="page.html?articleId=${headlineData.id}"
+    href="article.html?articleId=${headlineData.id}"
     style="background: linear-gradient(
         180.18deg,rgba(0, 0, 0, 0) 55.26%, #000000 97.99%); ";
     >
@@ -38,17 +38,17 @@ function renderHeadline() {
         </a>`;
 }
 // 最新消息
-function renderlatestArticleList() {
-    const latestArticleList = document.querySelector(".latest .articles-list");
+function renderLatestList() {
+    const latestList = document.querySelector(".latest .index-articles-list");
     let str = "";
     const latestData = articlesData.slice(1, 4);
     latestData.forEach((article) => {
         str += `<li>
-                <a href="page.html?articleId=${article.id}">
-                    <div class="articles-list-img">
+                <a href="article.html?articleId=${article.id}">
+                    <div class="index-articles-list-img">
                         <img src="${article.imgUrl}" alt="" />
                     </div>
-                    <div class="articles-info">
+                    <div class="index-articles-info">
                         <h3>${article.title}</h3>
                         <div class="tab">
                             <span href="#" class="">${article.tab}</span>
@@ -58,22 +58,22 @@ function renderlatestArticleList() {
                 </a>
             </li>`;
     });
-    latestArticleList.innerHTML = str;
+    latestList.innerHTML = str;
 }
 // 新聞列表
 function renderNewsList() {
-    const newsList = document.querySelector(".news .articles-list");
+    const newsList = document.querySelector(".news .index-articles-list");
     let str = "";
     const newsListData = articlesData.filter(
         (article) => article.category === "news"
     );
     newsListData.forEach((article) => {
         str += `<li>
-                <a href="page.html?articleId=${article.id}">
-                    <div class="articles-list-img">
+                <a href="article.html?articleId=${article.id}">
+                    <div class="index-articles-list-img">
                         <img src="${article.imgUrl}" alt="" />
                     </div>
-                    <div class="articles-info">
+                    <div class="index-articles-info">
                         <h3>${article.title}</h3>
                         <div class="tab">
                             <span href="#" class="">${article.tab}</span>
@@ -87,18 +87,18 @@ function renderNewsList() {
 }
 // 專欄
 function renderColumnsList() {
-    const columnsList = document.querySelector(".columns .articles-list");
+    const columnsList = document.querySelector(".columns .index-articles-list");
     let str = "";
     const newsListData = articlesData.filter(
         (article) => article.category === "columns"
     );
     newsListData.forEach((article) => {
         str += `<li>
-                <a href="page.html?articleId=${article.id}">
-                    <div class="articles-list-img">
+                <a href="article.html?articleId=${article.id}">
+                    <div class="index-articles-list-img">
                         <img src="${article.imgUrl}" alt="" />
                     </div>
-                    <div class="articles-info">
+                    <div class="index-articles-info">
                         <h3>${article.title}</h3>
                         <div class="tab">
                             <span href="#" class="">${article.tab}</span>
@@ -120,9 +120,9 @@ function renderReviewList() {
     const top5 = reviewListData.slice(-5).reverse();
     top5.forEach((article) => {
         str += `<li>
-                    <a href="page.html?articleId=${article.id}">
+                    <a href="article.html?articleId=${article.id}">
                         <img src="${article.imgUrl}" alt="" />
-                        <div class="articles-info">
+                        <div class="index-articles-info">
                             <h3>${article.title}</h3>
                         </div>
                         <div class="tab">
@@ -143,9 +143,9 @@ function renderPreorderList() {
     const top5 = preorderListData.slice(0, 5);
     top5.forEach((article) => {
         str += `            <li>
-      <a href="page.html?articleId=${article.id}">
+      <a href="article.html?articleId=${article.id}">
         <img src="${article.imgUrl}" alt="" />
-        <div class="articles-info">
+        <div class="index-articles-info">
           <h3>${article.title}</h3>
         </div>
         <div class="tab">
@@ -168,7 +168,7 @@ function renderRookieList() {
     const top3 = rookieListData.slice(-5).reverse();
     top3.forEach((article) => {
         str += `            <li>
-      <a href="page.html?articleId=${article.id}">
+      <a href="article.html?articleId=${article.id}">
         <div class="big-article-img">
           <img src="${article.imgUrl}" alt="" />
         </div>
@@ -181,13 +181,3 @@ function renderRookieList() {
         rookieList.innerHTML = str;
     });
 }
-
-//日期轉換
-function dateTrans(num) {
-    const date = new Date(num);
-    const str = `${date.getFullYear()}/${
-        date.getMonth() + 1
-    }/${date.getDate()}`;
-    return str;
-}
-dateTrans(1670310075213);

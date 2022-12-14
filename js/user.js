@@ -84,9 +84,9 @@ function renderUserBookmark() {
     userBookmarkData.forEach((item) => {
         str += `
                         <tr>
-                            <td  class="bookmark-title"> <a href="">${
-                                item.article.title
-                            }</a></td>
+                            <td  class="bookmark-title"> <a href="article.html?articleId=${
+                                item.article.id
+                            }">${item.article.title}</a></td>
                             <td class="bookmark-time">${timeTrans(
                                 item.timestap
                             )}</td>
@@ -145,9 +145,9 @@ function errHappened(str = "抱歉，某些錯誤發生了，請重新登入") {
 
 // 點擊修改
 userMain.addEventListener("click", (e) => {
-    e.preventDefault();
     // 確認點擊到的是修改
     if (e.target.nodeName === "A" && e.target.textContent === "修改") {
+        e.preventDefault();
         const target = e.target.getAttribute("data-type");
         const targetEl = document.querySelector(`#${target}`);
         // 讓前面的input可以被修改
@@ -212,41 +212,42 @@ function timeTrans(num) {
 userMain.addEventListener("click", (e) => {
     //刪除特定單筆
     if (e.target.nodeName === "A" && e.target.textContent === "刪除") {
+        e.preventDefault();
         const id = e.target.getAttribute("data-id");
-        axios
-            .delete(`${api_path}/600/bookmarks/${id}`, headers)
-            .then(() => {
+        Swal.fire({
+            title: "確定嗎?",
+            text: "這將會清除此收藏文章喔",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#737373",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "確定",
+            cancelButtonText: "取消",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .delete(`${api_path}/600/bookmarks/${id}`, headers)
+                    .then(() => {})
+                    .catch((err) => {
+                        console.log(err);
+                    });
                 Swal.fire({
-                    title: "確定嗎?",
-                    text: "這將會清除此收藏文章喔",
-                    icon: "warning",
-                    showCancelButton: true,
+                    title: "刪除成功!",
+                    icon: "success",
                     confirmButtonColor: "#737373",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "確定",
-                    cancelButtonText: "取消",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "刪除成功!",
-                            icon: "success",
-                            confirmButtonColor: "#737373",
-                        });
-                        axios.get(bookmarkUrl, headers).then((res) => {
-                            userBookmarkData = res.data;
-                            renderUserBookmark();
-                        });
-                    }
                 });
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+                axios.get(bookmarkUrl, headers).then((res) => {
+                    userBookmarkData = res.data;
+                    renderUserBookmark();
+                });
+            }
+        });
     } else if (
         e.target.nodeName === "A" &&
         e.target.textContent === "刪除全部" &&
         userBookmarkData.length !== 0
     ) {
+        e.preventDefault();
         Swal.fire({
             title: "確定嗎?",
             text: "這將會清除所有收藏文章喔",
