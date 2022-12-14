@@ -35,9 +35,12 @@ function initUser() {
             }
         })
         .catch((err) => {
-            console.log(err);
-            // 發生錯誤(過期或其他)跳出通知
-            // errHappened();
+            console.log(err.response.data);
+            if (err.response.data === "jwt expired") {
+                errHappened("閒置過久麻煩重新登入");
+            } else {
+                errHappened();
+            }
         });
 }
 
@@ -121,10 +124,10 @@ function renderUserBookmark() {
 }
 
 // 錯誤發生的提示函示
-function errHappened() {
+function errHappened(str = "抱歉，某些錯誤發生了，請重新登入") {
     Swal.fire({
         title: "請重新登入",
-        text: "某些錯誤發生了，麻煩重新登入",
+        text: str,
         icon: "warning",
         showCancelButton: false,
         confirmButtonColor: "#4e4e4e",
