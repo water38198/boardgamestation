@@ -162,7 +162,6 @@
       ],
       "like": 0,
       "collect": 0,
-      "author": "",
       "timestap": 1668614698845,
       "userId": 2
     },
@@ -218,8 +217,35 @@
       ],
       "like": 0,
       "collect": 0,
-      "author": "",
       "timestap": 1670423652348,
+      "userId": 1
+    },
+    {
+      "id": 17,
+      "title": "超人氣笑瘋派對桌遊『瞎掰王』嘖嘖上線啦",
+      "content": "玩派對桌遊的最核心重點！講幹話!!，熱銷亞洲的派對桌遊!這是款專為講幹話設計的遊戲！到底誰在講真話，誰在瞎掰？ 2023年最該玩的桌遊！這次同步集資與印刷！會讓大家在聖誕節前拿到喔！就是要讓你從2022年一路講幹話到2023年",
+      "link": "https://dogbarktrain.pse.is/4mtgkq",
+      "imgUrl": "img/article17.jpg",
+      "tab": "集資",
+      "category": "preorder",
+      "tag": [],
+      "like": 0,
+      "collect": 0,
+      "timestap": 1670997531169,
+      "userId": 1
+    },
+    {
+      "id": 18,
+      "title": "《That Time You Killed Me 煞有其時 預購》",
+      "content": "2022 最別出心裁的雙人遊戲 That Time You Killed Me 煞有其時，是一款在 BGG 勇奪 7.7 分高分評價的兩人抽象期類遊戲，別讓未來的你殺了你自己！在遊戲中，玩家雙方是時空旅行的發明者，為了證明自己才是時空旅行的發明者，所以打算將對手滅口，從現在、未來甚至到過去，如何欲判你對手的行動並搶先一步在不同的時空之間穿梭壓制對方，就將成為你重要的人生目標！",
+      "link": "",
+      "imgUrl": "img/article18.jpg",
+      "tab": "預購",
+      "category": "preorder",
+      "tag": [],
+      "like": 0,
+      "collect": 0,
+      "timestap": 1670998072455,
       "userId": 1
     }
   ],

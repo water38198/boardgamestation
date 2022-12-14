@@ -17,7 +17,6 @@ function init() {
 
 init();
 
-
 function renderHeadline() {
     const latestHeadline = document.querySelector(".latest-headline");
     const headlineData = articlesData[0];
@@ -38,6 +37,7 @@ function renderHeadline() {
 
         </a>`;
 }
+// 最新消息
 function renderlatestArticleList() {
     const latestArticleList = document.querySelector(".latest .articles-list");
     let str = "";
@@ -60,7 +60,7 @@ function renderlatestArticleList() {
     });
     latestArticleList.innerHTML = str;
 }
-
+// 新聞列表
 function renderNewsList() {
     const newsList = document.querySelector(".news .articles-list");
     let str = "";
@@ -85,7 +85,7 @@ function renderNewsList() {
     });
     newsList.innerHTML = str;
 }
-
+// 專欄
 function renderColumnsList() {
     const columnsList = document.querySelector(".columns .articles-list");
     let str = "";
@@ -140,7 +140,7 @@ function renderPreorderList() {
         (article) => article.category === "preorder"
     );
     let str = "";
-    const top5 = preorderListData.slice(-5).reverse();
+    const top5 = preorderListData.slice(0, 5);
     top5.forEach((article) => {
         str += `            <li>
       <a href="page.html?articleId=${article.id}">
