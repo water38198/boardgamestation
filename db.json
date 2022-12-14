@@ -34,43 +34,7 @@
       "collect": 0,
       "author": "PayRoom",
       "timestap": 1668090679203,
-      "userId": 1
-    },
-    {
-      "id": 3,
-      "title": " 《Pakrs坦帕妮主題樂園》繁中版預購",
-      "content": "Tenpenny Pakrs坦帕妮主題樂園繁中版預購，借英文版的圖，實體全繁體中文，遊樂園主題板塊拼放策略新作，Vincent Dutrait精緻美術，👉2022年全球最熱門家庭遊戲👉BGG7.6高分",
-      "link": "",
-      "imgUrl": "img/article3.jpg",
-      "tab": "預購",
-      "category": "preorder",
-      "tag": [
-        "中文化",
-        "預購"
-      ],
-      "like": 0,
-      "collect": 0,
-      "author": "Apple",
-      "timestap": 1668184093877,
       "userId": 2
-    },
-    {
-      "id": 4,
-      "title": "【開箱】ArchRavels",
-      "content": "胡亂拍照，模糊潦草，隨意亂寫，純粹留念。ArchRavels 是 KS 上少數我選擇一般版本而非豪華版的遊戲，一般版與豪華版的差異在於牌墊、木質碗和真實的毛線球資源，雖說價格只差USD$25不算大，但這些額外的東西並沒有收納，也就是說它們不能放入遊戲盒內，必須另外收好，這是為何我不選豪華版。",
-      "link": "",
-      "imgUrl": "img/article4.webp",
-      "tab": "開箱",
-      "category": "review",
-      "tag": [
-        "輕策",
-        "KS"
-      ],
-      "like": 0,
-      "collect": 0,
-      "author": "Happy",
-      "timestap": 1668184700340,
-      "userId": 3
     },
     {
       "id": 5,
@@ -89,7 +53,7 @@
       "collect": 0,
       "author": "PayRoom",
       "timestap": 1668184713474,
-      "userId": 1
+      "userId": 2
     },
     {
       "id": 6,
@@ -108,7 +72,7 @@
       "collect": 0,
       "author": "Peach",
       "timestap": 1668303054996,
-      "userId": 5
+      "userId": 1
     },
     {
       "id": 7,
@@ -148,42 +112,6 @@
       "userId": 2
     },
     {
-      "id": 9,
-      "title": "《沙丘：厄拉科斯之戰》- 史詩聖戰對戰桌遊預購上線",
-      "content": "現在購買直接加碼送足量牌套王SLEEVEKINGS給大家!!預計繁體中文版本會再去做名詞校對喔!大家放心!",
-      "link": "https://wabay.tw/projects/dune-war-for-arrakis?locale=zh-TW",
-      "imgUrl": "img/article9.png",
-      "tab": "眾籌",
-      "category": "preorder",
-      "tag": [
-        "沙丘",
-        "史詩鉅作"
-      ],
-      "like": 0,
-      "collect": 0,
-      "author": "Banana",
-      "timestap": 1668303644574,
-      "userId": 4
-    },
-    {
-      "id": 10,
-      "title": "【桌遊微心得】-花見小路、神探緝凶",
-      "content": "《花見小路》是一款2人卡牌遊戲，藉由送藝妓喜歡的物品來贏的芳心而獲勝，只要贏得4位藝妓(總共7位)或贏得11點以上的魅力值就獲勝，同時達成時贏得11點以上者獲勝。《神探緝凶》是一款捉迷藏的遊戲，一方扮演刑警，另一方扮演逃犯，遊戲中有43張地點牌(0~42)，逃犯藉由打出地點牌模擬逃跑路線，只要連結到地點42而刑警無法全部猜出逃跑路線就獲得勝利了，還沒到42就被抓住，那就是刑警獲勝了。",
-      "link": "",
-      "imgUrl": "img/article10.png",
-      "tab": "評測",
-      "category": "review",
-      "tag": [
-        "輕策",
-        "雙人對戰"
-      ],
-      "like": 0,
-      "collect": 0,
-      "author": "Happy",
-      "timestap": 1668303873291,
-      "userId": 3
-    },
-    {
       "id": 11,
       "title": "【開箱】伊斯坦堡-骰子版",
       "content": "哦～抓到了，有人在市集不顧攤位，在偷玩桌遊！",
@@ -217,7 +145,7 @@
       "collect": 0,
       "author": "黃色狂想",
       "timestap": 1668614522226,
-      "userId": 3
+      "userId": 1
     },
     {
       "id": 13,
@@ -236,7 +164,7 @@
       "collect": 0,
       "author": "",
       "timestap": 1668614698845,
-      "userId": 5
+      "userId": 2
     },
     {
       "id": 14,
@@ -298,17 +226,51 @@
   "users": [
     {
       "email": "water38198@gmail.com",
-      "password": "$2a$10$xGahwe6msymsDQHcEYTFwuOvz20musZuz.PDdVQ5vnfqsZCph78Qy",
+      "password": "$2a$10$i5hUIcnT6HeiFTozihsJyOqtNMsjaJL2KIMbKQBusiUALwSEcAnPq",
       "nickname": "PayRoom",
       "isAdmin": false,
       "id": 1
+    },
+    {
+      "email": "test123@gmail.com",
+      "password": "$2a$10$q109If0.gl1S5Pk3HGTYkOBSu8OHe3nmR91cZVXLZ70cCxuhzgOmq",
+      "nickname": "機器人一號",
+      "isAdmin": false,
+      "id": 2
+    },
+    {
+      "email": "test456@gmai.com",
+      "password": "$2a$10$EwcmWEw1fxSpc.7B0u2yLuKHQhAgoda8QoT69eoSjj4Ew1m6Dco7m",
+      "nickname": "機器人2",
+      "isAdmin": false,
+      "id": 3
+    },
+    {
+      "email": "test789@gmail.com",
+      "password": "$2a$10$OK.Pk..JkjOcD9LcZ.ZVpOklN7cNeHlQ8ZMMZeEevegVj13CkadNW",
+      "nickname": "機器人3",
+      "isAdmin": false,
+      "id": 4
     }
   ],
   "bookmarks": [
     {
-      "id": 1,
+      "id": 2,
       "userId": 1,
-      "articleId": 1
+      "articleId": 6,
+      "timestap": 1600950004055
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "articleId": 5,
+      "timestap": 1620951213655
+    },
+    {
+      "id": 5,
+      "userId": 3,
+      "articleId": 1,
+      "timestap": 1630951818455
     }
   ]
 }

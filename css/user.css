@@ -29,6 +29,13 @@ main {
     margin-right: 10px;
 }
 
+.sidebar-email {
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+    color: #737373;
+}
+
 .user-sidebar ul {
     margin-top: 40px;
     display: flex;
@@ -129,4 +136,72 @@ main {
 
 .user-input-container .input-active {
     border: #737373 1px solid;
+}
+
+/* 收藏文章 */
+.user-bookmark-table {
+    color: #4e4e4e;
+    margin: 40px auto 0px 40px;
+    text-align: center;
+}
+
+.user-bookmark-table thead {
+    font-size: 24px;
+}
+
+.user-bookmark-table thead th {
+    padding-bottom: 40px;
+    font-weight: 700;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.user-bookmark-table thead tr:first-child {
+    text-align: left;
+}
+
+.user-bookmark-table tbody {
+    font-size: 20px;
+}
+
+.user-bookmark-table tbody tr {
+    border-bottom: 1px solid #737373;
+}
+
+.user-bookmark-table tbody td {
+    padding: 20px;
+}
+
+.user-bookmark-table tbody a {
+    color: #4e4e4e;
+}
+
+.user-bookmark-table a:hover {
+    text-decoration: underline;
+}
+
+.bookmark-title {
+    width: 550px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.user-bookmark-table .bookmark-time {
+    font-size: 16px;
+}
+
+.user-bookmark-table .bookmark-del {
+    color: brown;
+    font-size: 16px;
+}
+
+.user-bookmark-table tfoot th {
+    padding-top: 80px;
+    padding-bottom: 20px;
+}
+
+.user-bookmark-table .bookmark-delAll {
+    color: #737373;
 }

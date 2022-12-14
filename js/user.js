@@ -1,13 +1,14 @@
-const type = location.href.split("?")[1];
-let userData = [];
-let url = "";
+let userProfileData = [];
+let userBookmarkData = [];
+let profileUrl = `${api_path}/600/users/${userId}`;
+let bookmarkUrl = `${api_path}/660/bookmarks?userId=${userId}&_expand=article`;
 const headers = {
     headers: {
         authorization: `Bearer ${token}`,
     },
 };
 // 如果資料有缺失，先連結到登入頁面
-if (userId === "" || userNickname === "" || userEmail === "" || token === "") {
+if (userId === "" || userNickname === "" || token === "") {
     errHappened();
 } else {
     // 初始化
@@ -15,30 +16,33 @@ if (userId === "" || userNickname === "" || userEmail === "" || token === "") {
 }
 
 function initUser() {
-    url = `${api_path}/600/users/${userId}`;
-    axios
-        .get(url, headers)
+    Promise.all([
+        axios.get(profileUrl, headers),
+        axios.get(bookmarkUrl, headers),
+    ])
         .then((res) => {
-            userData = res.data;
+            userProfileData = res[0].data;
+            userBookmarkData = res[1].data || [];
             const sidebarName = document.querySelector(".user-sidebar h3");
-            sidebarName.innerHTML = `<img src="img/user-avatar.png" alt="">${userData.nickname}`;
-            console.log(userData);
-            //預設都是連結到個人網站
-            renderUserProfile();
+            sidebarName.innerHTML = `<img src="img/user-avatar.png" alt="">${userProfileData.nickname}`;
+            const sidebarEmail = document.querySelector(".sidebar-email");
+            sidebarEmail.textContent = `${userProfileData.email}`;
+            const type = location.href.split("?")[1] || "";
             if (type.includes("bookmark")) {
-                console.log("我要去書籤");
+                renderUserBookmark();
+            } else {
+                renderUserProfile();
             }
         })
         .catch((err) => {
             console.log(err);
-            if (err) {
-                // 發生錯誤(過期或其他)跳出通知
-                errHappened();
-            }
+            // 發生錯誤(過期或其他)跳出通知
+            // errHappened();
         });
 }
 
 const userMain = document.querySelector(".user-main");
+//渲染個人檔案頁面
 function renderUserProfile() {
     userMain.innerHTML = `
                 <h2>個人檔案</h2>
@@ -48,20 +52,20 @@ function renderUserProfile() {
                         <div class="user-input-label">
                         <label for="userEmail">Email：</label>
                         </div>
-                        <span class="user-Email" id="userEmail">${userData.email}</span>
+                        <span class="user-Email" id="userEmail">${userProfileData.email}</span>
                     </div>
                     <div class="user-input-container">
                         <div class="user-input-label">
                             <label for="userpassword">密碼：</label>
                         </div>
-                        <input type="password" value=${userData.password} id ="userPassword" disabled>
+                        <input type="password" value=${userProfileData.password} id ="userPassword" disabled>
                         <a href="" data-type="userPassword">修改</a>
                     </div>
                     <div class="user-input-container">
                         <div class="user-input-label">
                             <label for="userNickname">暱稱：</label>
                         </div>
-                        <input type="text" value=${userData.nickname} id ="userNickname" disabled>
+                        <input type="text" value=${userProfileData.nickname} id ="userNickname" disabled>
                         <a href="" data-type="userNickname">修改</a>
                     </div>
                     <div class="user-input-container user-profile-btn">
@@ -69,11 +73,54 @@ function renderUserProfile() {
                     </div>
                 </form>
     `;
-    // const userEmail = document.querySelector("#userEmail");
-    // const userPassword = document.querySelector("#userPassword");
-    // const userNickname = document.querySelector("#userNickname");
 }
 
+// 渲染收藏文章(書籤)頁面
+function renderUserBookmark() {
+    let str = "";
+    userBookmarkData.forEach((item) => {
+        str += `
+                        <tr>
+                            <td  class="bookmark-title"> <a href="">${
+                                item.article.title
+                            }</a></td>
+                            <td class="bookmark-time">${timeTrans(
+                                item.timestap
+                            )}</td>
+                            <td><a href="" class="bookmark-del" data-id=${
+                                item.id
+                            }>刪除</a></td>
+                        </tr>
+        `;
+    });
+    userMain.innerHTML = `
+                    <h2>收藏文章</h2>
+                <p>你可以在這裡查看、刪除已收藏的文章</p>
+                <div>
+                <table class="user-bookmark-table">
+                    <thead>
+                        <tr>
+                            <th>文章標題</th>
+                            <th>加入時間</th>
+                            <th>編輯</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${str}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>已收藏${userBookmarkData.length}篇文章</th>
+                            <td></td>
+                            <td><a href="" class="bookmark-delAll">刪除全部</a></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                </div>
+    `;
+}
+
+// 錯誤發生的提示函示
 function errHappened() {
     Swal.fire({
         title: "請重新登入",
@@ -82,7 +129,6 @@ function errHappened() {
         showCancelButton: false,
         confirmButtonColor: "#4e4e4e",
         confirmButtonText: "確定",
-        timer: 5000,
     }).then((result) => {
         if (result.isConfirmed) {
             localStorage.clear();
@@ -121,7 +167,7 @@ userMain.addEventListener("click", (e) => {
             password: document.querySelector("#userPassword").value,
             nickname: document.querySelector("#userNickname").value,
         };
-        axios.patch(url, newData, headers).then((res) => {
+        axios.patch(profileUrl, newData, headers).then((res) => {
             console.log(res);
             Swal.fire({
                 title: "請重新登入",
@@ -145,8 +191,96 @@ userMain.addEventListener("click", (e) => {
 });
 
 const logoutBtn = document.querySelector(".user-sidebar-logout a");
+
+// sidebar的登出按鈕
 logoutBtn.addEventListener("click", (e) => {
     e.preventDefault();
     location.href = "login.html";
     localStorage.clear();
+});
+
+//時間轉換
+function timeTrans(num) {
+    const date = new Date(num);
+    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+}
+
+//刪除收藏文章
+userMain.addEventListener("click", (e) => {
+    //刪除特定單筆
+    if (e.target.nodeName === "A" && e.target.textContent === "刪除") {
+        const id = e.target.getAttribute("data-id");
+        axios
+            .delete(`${api_path}/600/bookmarks/${id}`, headers)
+            .then(() => {
+                Swal.fire({
+                    title: "確定嗎?",
+                    text: "這將會清除此收藏文章喔",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#737373",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "確定",
+                    cancelButtonText: "取消",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "刪除成功!",
+                            icon: "success",
+                            confirmButtonColor: "#737373",
+                        });
+                        axios.get(bookmarkUrl, headers).then((res) => {
+                            userBookmarkData = res.data;
+                            renderUserBookmark();
+                        });
+                    }
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    } else if (
+        e.target.nodeName === "A" &&
+        e.target.textContent === "刪除全部" &&
+        userBookmarkData.length !== 0
+    ) {
+        Swal.fire({
+            title: "確定嗎?",
+            text: "這將會清除所有收藏文章喔",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#737373",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "確定",
+            cancelButtonText: "取消",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "刪除成功!",
+                    text: "您的列表已經被清空",
+                    icon: "success",
+                    confirmButtonColor: "#737373",
+                });
+                const deleteArr = [];
+                userBookmarkData.forEach((bookmark) => {
+                    deleteArr.push(
+                        axios.delete(
+                            `${api_path}/600/bookmarks/${bookmark.id}`,
+                            headers
+                        )
+                    );
+                });
+                Promise.all(deleteArr)
+                    .then(() => {
+                        axios.get(bookmarkUrl, headers).then((res) => {
+                            userBookmarkData = res.data;
+                            renderUserBookmark();
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        });
+    }
 });

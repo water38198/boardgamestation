@@ -44,12 +44,7 @@ const loginSection = document.querySelector(".nav-login");
 function loginStatus() {
     //從localStorage抓會員資料，如果沒有設為空字串
     //如果資料不完整或是未登入狀態
-    if (
-        userId === "" ||
-        userNickname === "" ||
-        userEmail === "" ||
-        token === ""
-    ) {
+    if (userId === "" || userNickname === "" || token === "") {
         //將 登入&註冊 顯示
         loginSection.classList.toggle("toshow");
     } else {
@@ -176,3 +171,36 @@ dropList.addEventListener("click", (e) => {
 //   "password": "blackisbest",
 //   "name": "黑色毀滅"
 // }]
+
+//   "bookmarks": [
+//     {
+//       "id": 1,
+//       "userId": 1,
+//       "articleId": 1,
+//       "timestap": 1570949399255
+//     },
+//     {
+//       "id": 2,
+//       "userId": 1,
+//       "articleId": 6,
+//       "timestap": 1600950004055
+//     },
+//     {
+//       "id": 3,
+//       "userId": 1,
+//       "articleId": 2,
+//       "timestap": 1610950608855
+//     },
+//     {
+//       "id": 4,
+//       "userId": 2,
+//       "articleId": 5,
+//       "timestap": 1620951213655
+//     },
+//     {
+//       "id": 5,
+//       "userId": 3,
+//       "articleId": 1,
+//       "timestap": 1630951818455
+//     }
+//   ]
