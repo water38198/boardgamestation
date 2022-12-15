@@ -1,6 +1,6 @@
 const articleId = location.href.split("?articleId=")[1];
 const articleUrl = `${api_path}/articles/${articleId}?_expand=user&_embed=bookmark`;
-const bookmarkUrl = `${api_path}/bookmarks?articleId=${articleId}`;
+const bookmarkUrl = `${api_path}/articles/${articleId}/bookmarks`;
 let bookmarkNum = 0;
 let articleData = {};
 let hasthisBookmark = [];
@@ -9,15 +9,27 @@ const headers = {
         authorization: `Bearer ${token}`,
     },
 };
-
+//取得文章資料
 function getArticleData() {
     return axios.get(articleUrl);
 }
-
+// 取得本文被收藏次數
 function getBookmarkNum() {
     return axios.get(bookmarkUrl);
 }
+
 function initArticle() {
+    if (articleId === undefined) {
+        Swal.fire({
+            icon: "error",
+            title: "哇...有東西出錯了",
+            text: "3秒後將轉移到首頁",
+            showConfirmButton: false,
+            timer: 3000,
+        }).then(() => {
+            location.href = "index.html";
+        });
+    }
     Promise.all([getArticleData(), getBookmarkNum()])
         .then((res) => {
             articleData = res[0].data;
@@ -69,14 +81,16 @@ function renderArticle() {
                     </div>
     `;
     articleMain.innerHTML = str;
-    // 有無收藏標籤的切換
+
+    // 收藏狀態
     const addBookmark = document.querySelector(".add-bookmark");
     const removeBookmark = document.querySelector(".remove-bookmark");
     console.log(addBookmark);
+    //如果沒登入
     if (token === "") {
         addBookmark.classList.add("toshow");
     } else {
-        const thisBookmarkUrl = `${api_path}/660/bookmarks?userId=${userId}&articleId=${articleData.id}`;
+        const thisBookmarkUrl = `${api_path}/660/articles/${articleId}/bookmarks?userId=${userId}`;
         // 戳一下API看書籤裡面有沒有這篇文章
         axios.get(thisBookmarkUrl, headers).then((res) => {
             hasthisBookmark = res.data;
@@ -90,33 +104,30 @@ function renderArticle() {
             }
         });
     }
-    //切換收藏與否
+    //收藏與取消收藏的點擊事件
     addBookmark.addEventListener("click", (e) => {
         e.preventDefault();
-        // 先檢查登入了沒
+        // 先檢查是否登入
         if (token === "") {
             location.href = "login.html";
         } else {
             const newBookmark = {
                 userId: `${userId}`,
-                articleId: articleData.id,
                 timestap: Date.now(),
             };
-            axios
-                .post(`${api_path}/600/bookmarks`, newBookmark, headers)
-                .then((res) => {
-                    Swal.fire({
-                        icon: "success",
-                        title: "成功加入收藏文章",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    console.log(res);
-                    addBookmark.classList.toggle("toshow");
-                    removeBookmark.classList.toggle("toshow");
-                    hasthisBookmark.push(res.data);
-                    changeBookmarkNum();
+            axios.post(bookmarkUrl, newBookmark, headers).then((res) => {
+                Swal.fire({
+                    icon: "success",
+                    title: "成功加入收藏文章",
+                    showConfirmButton: false,
+                    timer: 1500,
                 });
+                console.log(res);
+                addBookmark.classList.toggle("toshow");
+                removeBookmark.classList.toggle("toshow");
+                hasthisBookmark.push(res.data);
+                changeBookmarkNum();
+            });
         }
     });
     removeBookmark.addEventListener("click", (e) => {

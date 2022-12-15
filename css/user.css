@@ -16,6 +16,8 @@ main {
 
 .user-sidebar {
     width: 180px;
+    display: flex;
+    flex-direction: column;
 }
 
 .user-sidebar h3 {
@@ -36,12 +38,14 @@ main {
     color: #737373;
 }
 
-.user-sidebar ul {
+.user-list,
+.manage-list {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
+
+
 
 .user-sidebar ul li {
     margin-bottom: 10px;
@@ -64,29 +68,54 @@ main {
     margin-right: 5px;
 }
 
-.user-logout {
+.user-sidebar-logout {
     margin-top: auto;
-    font-size: 14px;
+    text-align: center;
 }
 
+.user-sidebar-logout a {
+    margin-top: auto;
+    font-size: 14px;
+    color: #737373;
+}
 
+.manage-list {
+    display: none;
+}
 
+.manage-list>span {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #737373;
+}
+
+.manage-list.toshow {
+    display: flex;
+}
 
 
 
 
 
 .user-main {
-    flex-grow: 1;
     margin-left: 60px;
     background-color: #fff;
     padding: 20px 30px;
-
+    flex-grow: 1;
 }
 
 .user-main h2 {
     font-size: 32px;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.user-main h2 img {
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
 }
 
 .user-main p {
@@ -122,86 +151,103 @@ main {
     color: #4285f4;
 }
 
+.user-input-container .input-active {
+    border: #737373 1px solid;
+}
+
 .user-profile-btn input {
     font-size: 18px;
-    padding: 4px 10px;
-    background-color: #737373;
-    color: #fff;
-    margin-left: 80px;
+    padding: 5px 10px;
 }
 
 .user-profile-btn input:hover {
     cursor: pointer;
 }
 
-.user-input-container .input-active {
-    border: #737373 1px solid;
+.user-profile-btn .confirm-btn {
+    background-color: #737373;
+    color: #fff;
+    margin-left: 80px;
 }
 
-/* 收藏文章 */
-.user-bookmark-table {
+.user-profile-btn .cancel-btn {
+    background-color: #fff;
+    color: #737373;
+}
+
+/* 表格(收藏文章、我的文章、所有文章、會員管理) */
+.user-table {
+    margin-top: 20px;
     color: #4e4e4e;
-    margin: 40px auto 0px 40px;
     text-align: center;
+    width: 100%;
 }
 
-.user-bookmark-table thead {
+.user-table thead {
     font-size: 24px;
 }
 
-.user-bookmark-table thead th {
-    padding-bottom: 40px;
+
+.user-table thead th {
+
     font-weight: 700;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
-.user-bookmark-table thead tr:first-child {
+.user-table thead tr:first-child {
     text-align: left;
 }
 
-.user-bookmark-table tbody {
+.user-table tbody {
     font-size: 20px;
 }
 
-.user-bookmark-table tbody tr {
+.user-table tbody tr {
     border-bottom: 1px solid #737373;
 }
 
-.user-bookmark-table tbody td {
-    padding: 20px;
+.user-table tbody td {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    text-align-last: left;
 }
 
-.user-bookmark-table tbody a {
+.user-table tbody a {
     color: #4e4e4e;
 }
 
-.user-bookmark-table a:hover {
+.user-table a:hover {
     text-decoration: underline;
 }
 
-.bookmark-title {
-    width: 550px;
+.table-title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: left;
 }
 
-.user-bookmark-table .bookmark-time {
-    font-size: 16px;
+.table-title a {
+    display: flex;
+    align-items: center;
 }
 
-.user-bookmark-table .bookmark-del {
+.table-title img {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+.user-table .table-del,
+.user-table .table-edit {
     color: brown;
-    font-size: 16px;
 }
 
-.user-bookmark-table tfoot th {
+.user-table tfoot th {
     padding-top: 80px;
     padding-bottom: 20px;
 }
 
-.user-bookmark-table .bookmark-delAll {
+.user-table .table-delAll {
     color: #737373;
 }

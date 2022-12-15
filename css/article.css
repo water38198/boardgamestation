@@ -65,8 +65,9 @@
     color: #D7443E;
 }
 
-.toshow {
-    display: flex !important;
+.article-info .add-bookmark.toshow,
+.article-info .remove-bookmark.toshow {
+    display: flex
 }
 
 .article-content {
