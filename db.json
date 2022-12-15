@@ -327,28 +327,45 @@
       "password": "$2a$10$2qDdSIuSu28gSnH4YCxiw.zHgUuyCsVBkMaOAaMjhQvj4vW3Ukzry",
       "nickname": "PayRoom",
       "isAdmin": true,
-      "id": 1
+      "id": 1,
+      "createdTimestap": 1669651200000,
+      "loggedTimestap": 1671121883323
     },
     {
       "email": "test123@gmail.com",
       "password": "$2a$10$t/WkeuNqQLnLUQShhVynO.A66HoOS4tSs3KKGgwFJVprS/cl6rrma",
       "nickname": "機器人一號",
       "isAdmin": false,
-      "id": 2
+      "id": 2,
+      "createdTimestap": 1670169606430,
+      "loggedTimestap": 1671121483567
     },
     {
       "email": "test456@gmai.com",
       "password": "$2a$10$TEThDDBGjshULm1qU50d/OYpYia.drkxNru.541NIVTXsaKLU0jZG",
       "nickname": "機器人2號",
       "isAdmin": false,
-      "id": 3
+      "id": 3,
+      "createdTimestap": 1670256000000,
+      "loggedTimestap": 1671121618722
     },
     {
       "email": "test753@gmail.com",
       "password": "$2a$10$yihKFAzOfayXNid5y6JUJO26qTcPsOAOwdl1D7FyHzN0KSeUUEama",
       "nickname": "機器人3號",
       "isAdmin": false,
-      "id": 4
+      "id": 4,
+      "createdTimestap": 1670860800000,
+      "loggedTimestap": 0
+    },
+    {
+      "email": "test963@gmail.com",
+      "password": "$2a$10$fcQDOUE6ljBnAbh0/efTBOGxe4W8Jv1AntABBqlQqLcRKaYOyM7ci",
+      "nickname": "我不是機器人",
+      "isAdmin": false,
+      "createdTimestap": 1671119937652,
+      "loggedTimestap": 0,
+      "id": 5
     }
   ],
   "bookmarks": [
@@ -369,6 +386,18 @@
       "timestap": 1671111256528,
       "articleId": "17",
       "id": 3
+    },
+    {
+      "userId": "3",
+      "timestap": 1671121626000,
+      "articleId": "10",
+      "id": 4
+    },
+    {
+      "userId": "3",
+      "timestap": 1671121633663,
+      "articleId": "7",
+      "id": 5
     }
   ]
 }

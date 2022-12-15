@@ -2,13 +2,12 @@ let userProfileData = [];
 let userBookmarkData = [];
 let profileUrl = `${api_path}/600/users/${userId}`;
 let bookmarkUrl = `${api_path}/660/bookmarks?userId=${userId}&_expand=article`;
+let type = "";
 const headers = {
     headers: {
         authorization: `Bearer ${token}`,
     },
 };
-let type = "";
-
 // 如果localStorage資料有缺失，先連結到登入頁面
 if (userId === "" || userNickname === "" || token === "") {
     errHappened();
@@ -63,12 +62,12 @@ function initUser() {
         })
         .catch((err) => {
             console.log(err);
-            // console.log(err.response.data);
-            // if (err.response.data === "jwt expired") {
-            //     errHappened("閒置過久麻煩重新登入");
-            // } else {
-            //     errHappened();
-            // }
+            console.log(err.response.data);
+            if (err.response.data === "jwt expired") {
+                errHappened("閒置過久麻煩重新登入");
+            } else {
+                errHappened();
+            }
         });
 }
 
@@ -86,10 +85,26 @@ function renderSidebar() {
 function filterType(type) {
     if (type === "bookmark") {
         renderUserBookmark();
-    } else if (type === "manage-myArticles") {
+    } else if (
+        type === "manage-myArticles" &&
+        localStorage.getItem("isAdmin") === "true"
+    ) {
         renderMyArticles();
     } else if (type === "profile") {
         renderUserProfile();
+    } else if (
+        type === "manage-allArticles" &&
+        localStorage.getItem("isAdmin") === "true"
+    ) {
+        renderAllArticles();
+    } else if (
+        type === "manage-allUsers" &&
+        localStorage.getItem("isAdmin") === "true"
+    ) {
+        renderAllUsers();
+    } else {
+        errHappened();
+        location.href = "index.html";
     }
 }
 
@@ -127,6 +142,32 @@ function renderUserProfile() {
                 </form>
     `;
 }
+
+// 個人檔案頁面點擊事件;
+userMain.addEventListener("click", (e) => {
+    if (
+        e.target.nodeName === "A" &&
+        e.target.textContent === "變更" &&
+        type === "profile"
+    ) {
+        e.preventDefault();
+        editProfile(e);
+    } else if (
+        //點擊確定
+        e.target.nodeName === "INPUT" &&
+        e.target.getAttribute("class") === "confirm-btn" &&
+        type === "profile"
+    ) {
+        confirmProfile();
+    } else if (
+        //點擊取消
+        e.target.nodeName === "INPUT" &&
+        e.target.getAttribute("class") === "cancel-btn" &&
+        type === "profile"
+    ) {
+        cancelProfile();
+    }
+});
 
 // 渲染收藏文章(書籤)頁面
 function renderUserBookmark() {
@@ -176,8 +217,29 @@ function renderUserBookmark() {
                     </div>
     `;
 }
+// 收藏文章點擊事件
+userMain.addEventListener("click", (e) => {
+    if (
+        // 點擊單一刪除
+        e.target.nodeName === "A" &&
+        e.target.textContent === "刪除" &&
+        type === "bookmark"
+    ) {
+        e.preventDefault();
+        const id = e.target.getAttribute("data-id");
+        deleteBookmark(id);
+    } else if (
+        // 點擊刪除全部
+        e.target.nodeName === "A" &&
+        e.target.textContent === "刪除全部" &&
+        userBookmarkData.length !== 0
+    ) {
+        e.preventDefault();
+        deltelAllBookmark();
+    }
+});
 
-// 渲染我的文章
+// 渲染 我的文章
 function renderMyArticles() {
     let myArticlesData = [];
     axios.get(`${api_path}/users/${userId}/articles`).then((res) => {
@@ -226,7 +288,153 @@ function renderMyArticles() {
                                     <th>總共有${myArticlesData.length} 篇文章</th>
                                     <td></td>
                                     <td>
-                                        <a href="" class="table-delAll">刪除全部</a>
+                                        
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+    `;
+    });
+}
+//我的文章 點擊監聽
+userMain.addEventListener("click", (e) => {
+    if (
+        // 點擊單一刪除
+        e.target.nodeName === "A" &&
+        e.target.textContent === "刪除" &&
+        type === "manage-myArticles"
+    ) {
+        e.preventDefault();
+        const id = e.target.getAttribute("data-id");
+        deleteMyArticle(id);
+    } else if (
+        e.target.nodeName === "A" &&
+        e.target.textContent === "修改" &&
+        userBookmarkData.length !== 0
+    ) {
+        e.preventDefault();
+        editMyArticle();
+    }
+});
+
+//渲染 所有文章
+function renderAllArticles() {
+    let allArticlesData = [];
+    axios.get(`${api_path}/articles`).then((res) => {
+        allArticlesData = res.data;
+        console.log(allArticlesData);
+        let str = "";
+        allArticlesData.forEach((article) => {
+            str += `
+                        <tr>
+                            <td  class="table-title"> <a href="article.html?articleId=${
+                                article.id
+                            }"><img src=${article.imgUrl} alt="">${
+                article.title
+            }</a></td>
+                            <td class="table-time">${timeTrans(
+                                article.timestap
+                            )}</td>
+                            <td>
+                            <a href="" class="table-del" data-id=${
+                                article.id
+                            }>刪除</a>
+                            </td>
+                        </tr>
+        `;
+        });
+        userMain.innerHTML = `
+                        <h2><img src="img/icon-myprofile.png" alt="">所有文章</h2>
+                    <p>您可以在這裡查看、修改、刪除全部文章</p>
+                    <div>
+                        <table class="user-table">
+                            <thead>
+                                <tr>
+                                    <th>文章標題</th>
+                                    <th>建立時間</th>
+                                    <th>編輯</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${str}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>總共有${allArticlesData.length} 篇文章</th>
+                                    <td></td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+    `;
+    });
+}
+//所有文章 點擊事件
+userMain.addEventListener("click", (e) => {
+    if (
+        // 點擊單一刪除
+        e.target.nodeName === "A" &&
+        e.target.textContent === "刪除" &&
+        type === "manage-allArticles"
+    ) {
+        const id = e.target.getAttribute("data-id");
+        deleteArticle(id);
+    }
+});
+
+//渲染 會員管理
+function renderAllUsers() {
+    let allUsersData = [];
+    axios.get(`${api_path}/660/users`, headers).then((res) => {
+        allUsersData = res.data;
+        console.log(allUsersData);
+        let str = "";
+        allUsersData.forEach((user) => {
+            str += `
+                        <tr>
+                            <td  class="table-title">${user.email}</td>
+                            <td  class="">${user.nickname}</td>
+                            <td class="table-time">${timeTrans(
+                                user.loggedTimestap
+                            )}</td>
+                            <td class="table-time">${timeTrans(
+                                user.createdTimestap
+                            )}</td>
+                            <td>
+                            <a href="" class="table-del" data-id=${
+                                user.id
+                            }>刪除</a>
+                            </td>
+                        </tr>
+        `;
+        });
+        userMain.innerHTML = `
+                        <h2><img src="img/icon-myprofile.png" alt="">會員管理</h2>
+                    <p>您可以在這裡查看、移除所有會員</p>
+                    <div>
+                        <table class="user-table">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>暱稱</th>
+                                    <th>上次登入時間</th>              
+                                    <th>建立時間</th>
+                                    <th>編輯</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${str}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>總共有${allUsersData.length} 位會員</th>
+                                    <td></td>
+                                    <td>
+                                        
                                     </td>
                                 </tr>
                             </tfoot>
@@ -236,52 +444,19 @@ function renderMyArticles() {
     });
 }
 
-// 點擊事件監聽
+//會員管理 點擊事件
 userMain.addEventListener("click", (e) => {
-    //個人檔案
-    // 確認修改
     if (
-        e.target.nodeName === "A" &&
-        e.target.textContent === "變更" &&
-        type === "profile"
-    ) {
-        e.preventDefault();
-        editProfile(e);
-    } else if (
-        //點擊確定
-        e.target.nodeName === "INPUT" &&
-        e.target.getAttribute("class") === "confirm-btn" &&
-        type === "profile"
-    ) {
-        confirmProfile();
-    } else if (
-        //點擊取消
-        e.target.nodeName === "INPUT" &&
-        e.target.getAttribute("class") === "cancel-btn" &&
-        type === "profile"
-    ) {
-        cancelProfile();
-    } else if (
-        // 收藏文章
         // 點擊單一刪除
         e.target.nodeName === "A" &&
         e.target.textContent === "刪除" &&
-        type === "bookmark"
+        type === "manage-allUsers"
     ) {
         e.preventDefault();
         const id = e.target.getAttribute("data-id");
-        deleteBookmark(id);
-    } else if (
-        // 點擊刪除全部
-        e.target.nodeName === "A" &&
-        e.target.textContent === "刪除全部" &&
-        userBookmarkData.length !== 0
-    ) {
-        e.preventDefault();
-        deltelAllBookmark();
+        deleteUser(id);
     }
 });
-
 //修改會員資料
 function editProfile(e) {
     // 選取到該input(password、nickname)
@@ -431,6 +606,92 @@ function deltelAllBookmark() {
                 .catch((err) => {
                     console.log(err);
                 });
+        }
+    });
+}
+
+//刪除自己文章
+function deleteMyArticle(id) {
+    Swal.fire({
+        title: "確定嗎?",
+        text: "這將會刪除此文章喔",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#737373",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "確定",
+        cancelButtonText: "取消",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios
+                .delete(`${api_path}/600/articles/${id}`, headers)
+                .then(() => {})
+                .catch((err) => {
+                    console.log(err);
+                });
+            Swal.fire({
+                title: "刪除成功!",
+                icon: "success",
+                confirmButtonColor: "#737373",
+            });
+            renderMyArticles();
+        }
+    });
+}
+
+//管理員刪除文章
+function deleteArticle(id) {
+    Swal.fire({
+        title: "確定嗎?",
+        text: "這將會刪除此文章喔",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#737373",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "確定",
+        cancelButtonText: "取消",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios
+                .delete(`${api_path}/660/articles/${id}`, headers)
+                .then(() => {})
+                .catch((err) => {
+                    console.log(err);
+                });
+            Swal.fire({
+                title: "刪除成功!",
+                icon: "success",
+                confirmButtonColor: "#737373",
+            });
+            renderAllArticles();
+        }
+    });
+}
+//刪除會員
+function deleteUser(id) {
+    Swal.fire({
+        title: "警告!!",
+        text: "這將會刪除此會員",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#737373",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "確定",
+        cancelButtonText: "取消",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios
+                .delete(`${api_path}/660/users/${id}`, headers)
+                .then(() => {})
+                .catch((err) => {
+                    console.log(err);
+                });
+            Swal.fire({
+                title: "刪除成功!",
+                icon: "success",
+                confirmButtonColor: "#737373",
+            });
+            renderAllUsers();
         }
     });
 }

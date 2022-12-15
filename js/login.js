@@ -62,6 +62,7 @@ function sentData(e) {
         const obj = {};
         obj.email = userEmail;
         obj.password = userPassword;
+        obj.loggedTimestap = Date.now();
         axios
             .post(`${api_path}/login`, obj)
             .then((res) => {
@@ -69,7 +70,7 @@ function sentData(e) {
                 // 登入成功後將會員資料存放在localStorage
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("userId", res.data.user.id);
-                // localStorage.setItem("userEmail", res.data.user.email);
+                localStorage.setItem("isAdmin", res.data.user.isAdmin);
                 localStorage.setItem("userNickname", res.data.user.nickname);
                 // 成功結果提示
                 Swal.fire({
@@ -80,6 +81,20 @@ function sentData(e) {
                     timer: 2000,
                 });
                 setTimeout(() => {
+                    // 加入登入時間
+                    axios.patch(
+                        `${api_path}/users/${localStorage.getItem("userId")}`,
+                        {
+                            loggedTimestap: Date.now(),
+                        },
+                        {
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem(
+                                    "token"
+                                )}`,
+                            },
+                        }
+                    );
                     gobackPage();
                     userInfoForm.reset();
                 }, 2000);
