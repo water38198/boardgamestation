@@ -69,7 +69,8 @@ function renderCategory(data) {
         <div class="article-img"><img src=${article.imgUrl} alt=""></div>
         <div class="article-info">
             <h3 class="article-title">${article.title}</h3>
-            <p class="article-content">${article.content}</p>
+            
+            <div class="article-content">${article.content}</div>
             <div class="article-tab">
                 <span>${article.tab}</span>
             </div>

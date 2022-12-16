@@ -1,10 +1,12 @@
 // RWD nav列
+//點擊後展開nav
 const hamMenu = document.querySelector(".ham-menu-button");
 hamMenu.addEventListener("click", function (e) {
     e.preventDefault();
     const navList = document.querySelector(".nav-list");
     navList.classList.toggle("menu-show");
 });
+//點擊後展開搜尋列
 const hamMenuSearch = document.querySelector(".ham-menu-serach");
 hamMenuSearch.addEventListener("click", function (e) {
     e.preventDefault();
@@ -13,50 +15,57 @@ hamMenuSearch.addEventListener("click", function (e) {
     navSearch.classList.toggle("search-show");
 });
 
-const searchBtn = document.querySelector(".nav-search a");
 //點擊放大鏡按鈕執行搜尋
+const searchBtn = document.querySelector(".nav-search a");
 searchBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const value = searchInput.value;
-    location.href = `category.html?q=${value}`;
+    if (value !== "") {
+        location.href = `category.html?q=${value}`;
+    }
 });
 
-const searchInput = document.querySelector(".nav-search input");
 //按下Enter鍵搜尋
+const searchInput = document.querySelector(".nav-search input");
 searchInput.addEventListener("keydown", (e) => {
     if (e.keyCode === 13) {
         const value = searchInput.value;
-        location.href = `category.html?q=${value}`;
+        if (value !== "") {
+            location.href = `category.html?q=${value}`;
+        }
     }
 });
 
 const dropList = document.querySelector(".nav-user-dropList ul");
 
-// 載入localStorage參數
+// 載入localStorage參數，如果沒有設為空字串
 token = localStorage.getItem("token") || "";
 const userId = localStorage.getItem("userId") || "";
 const userNickname = localStorage.getItem("userNickname") || "";
 const userEmail = localStorage.getItem("userEmail") || "";
-const userSection = document.querySelector(".nav-user");
-const loginSection = document.querySelector(".nav-login");
 
 //登入狀態函式
 function loginStatus() {
-    //從localStorage抓會員資料，如果沒有設為空字串
     //如果資料不完整或是未登入狀態
+    const userSection = document.querySelector(".nav-user");
+    const loginSection = document.querySelector(".nav-login");
+    const userSectionham = document.querySelector(".ham-menu-userName");
+    const loginSectionham = document.querySelector(".ham-menu-login");
+    const registerSectionham = document.querySelector(".ham-menu-register");
+    const logoutSectionham = document.querySelector(".ham-menu-logout");
+
     if (userId === "" || userNickname === "" || token === "") {
         //將 登入&註冊 顯示
         loginSection.classList.toggle("toshow");
+        loginSectionham.classList.toggle("toshow");
+        registerSectionham.classList.toggle("toshow");
     } else {
         //顯示用戶名稱
         document.querySelector(".user-name span").textContent = userNickname;
+        userSectionham.innerHTML = `<img src="img/icon-avatar.png" alt="" />${userNickname}`;
         userSection.classList.toggle("toshow");
-        //id埋入下拉選單a連結裡面
-        dropList.innerHTML = `
-        <li><a href="user.html?profile">會員資料</a></li>
-        <li><a href="user.html?bookmark">收藏列表</a></li>
-        <li><a href="" class="user-logOut">登出</a></li>
-        `;
+        userSectionham.classList.toggle("toshow");
+        logoutSectionham.classList.toggle("toshow");
     }
 }
 //執行函式
@@ -78,6 +87,15 @@ dropList.addEventListener("click", (e) => {
         if (location.href.includes("user.html")) {
             location.href = "login.html";
         }
+    }
+});
+
+document.querySelector(".ham-menu-logout").addEventListener("click", (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    location.reload();
+    if (location.href.includes("user.html")) {
+        location.href = "login.html";
     }
 });
 

@@ -25,80 +25,55 @@
 
     <body>
         <!-- 表頭 -->
-        <header>
-            <div class="header-container">
-                <div class="header-logo">
-                    <a href="index.html"><img src="img/logo.png" alt="" /></a>
+    <header>
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="index.html"><img src="img/logo.png" alt="" /></a>
+            </div>
+            <!-- 導覽列 -->
+            <nav>
+                <ul class="nav-list">
+                    <li>
+                        <a href="category.html?category=latest&name=最新消息" class="nav-tab">最新消息</a>
+                    </li>
+                    <li>
+                        <a href="category.html?category=columns&category=news&name=專欄新聞" class="nav-tab">專欄新聞</a>
+                    </li>
+                    <li>
+                        <a href="category.html?category=preorder&name=眾籌預購" class="nav-tab">眾籌預購</a>
+                    </li>
+                    <li>
+                        <a href="category.html?category=review&name=開箱評測" class="nav-tab">開箱評測</a>
+                    </li>
+                    <li>
+                        <a href="category.html?category=rookie&name=新手入門" class="nav-tab">新手入門</a>
+                    </li>
+                    <li>
+                        <a href="user.html?profile" class="nav-tab ham-menu-userName"><img src="img/icon-avatar.png" alt="" />
+                            會員名稱</a>
+                    </li>
+                                        <li>
+                        <a href="" class="nav-tab ham-menu-logout">
+                            登出</a>
+                    </li>
+                    <li>
+                        <a href="login.html" class="nav-tab ham-menu-login">登入</a>
+                    </li>
+                    <li>
+                        <a href="register.html" class="nav-tab ham-menu-register">註冊</a>
+                    </li>
+                </ul>
+                <div class="nav-search">
+                    <a href=""><img src="img/icon-search.png" alt="" /></a>
+                    <input type="text" placeholder="輸入關鍵字" />
                 </div>
-                <!-- 導覽列 -->
-                <nav>
-                    <ul class="nav-list">
-                        <li>
-                            <a href="category.html?category=latest&name=最新消息" class="nav-tab"
-                                >最新消息</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="category.html?category=columns&category=news&name=專欄新聞"
-                                class="nav-tab"
-                                >專欄新聞</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="category.html?category=preorder&name=眾籌預購"
-                                class="nav-tab"
-                                >眾籌預購</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="category.html?category=review&name=開箱評測"
-                                class="nav-tab"
-                                >開箱評測</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="category.html?category=rookie&name=新手入門"
-                                class="nav-tab"
-                                >新手入門</a
-                            >
-                        </li>
-                        <li>
-                            <a href="#" class="nav-tab ham-menu-userName"
-                                ><img src="img/icon-avatar.png" alt="" />
-                                會員名稱</a
-                            >
-                        </li>
-                        <li>
-                            <a href="login.html" class="nav-tab ham-menu-login"
-                                >登入</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="register.html"
-                                class="nav-tab ham-menu-register"
-                                >註冊</a
-                            >
-                        </li>
-                    </ul>
-                    <div class="nav-search">
-                        <a href=""><img src="img/icon-search.png" alt="" /></a>
-                        <input type="text" placeholder="輸入關鍵字" />
-                    </div>
-                    <div class="nav-user">                        
-                        <a href="#" class="user-name nav-tab"
-                            ><img src="img/icon-avatar.png" alt="" /><span
-                                ></span
-                            ></a
-                        >
+                <div class="nav-logStatus">
+                    <div class="nav-user">
+                        <a href="#" class="user-name nav-tab"><img src="img/icon-avatar.png" alt="" /><span></span></a>
                         <div class="nav-user-dropList">
                             <ul>
-                                <li><a href="user.html/info?userId=num">會員資料</a></li>
-                                <li><a href="user.html/bookmark?userId=num">收藏列表</a></li>
+                                <li><a href="user.html?profile">會員資料</a></li>
+                                <li><a href="user.html/?bookmark">收藏列表</a></li>
                                 <li><a href="" class="user-logOut">登出</a></li>
                             </ul>
                         </div>
@@ -107,17 +82,15 @@
                         <a href="login.html" class="user-login">登入</a>
                         <a href="register.html" class="user-register">註冊</a>
                     </div>
-                    <div class="ham-menu">
-                        <a href="" class="ham-menu-icon ham-menu-serach"
-                            ><img src="img/icon-search.png" alt=""
-                        /></a>
-                        <a href="#" class="ham-menu-icon ham-menu-button"
-                            ><img src="img/icon-menu.png" alt=""
-                        /></a>
-                    </div>
-                </nav>
-            </div>
-        </header>
+                </div>
+
+                <div class="ham-menu">
+                    <a href="" class="ham-menu-icon ham-menu-serach"><img src="img/icon-search.png" alt="" /></a>
+                    <a href="#" class="ham-menu-icon ham-menu-button"><img src="img/icon-menu.png" alt="" /></a>
+                </div>
+            </nav>
+        </div>
+    </header>
 
         <!-- 文章區塊 -->
         <main>
