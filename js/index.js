@@ -31,7 +31,7 @@ function renderHeadline() {
         180.18deg,rgba(0, 0, 0, 0) 55.26%, #000000 97.99%); ";
     >
     <div class="tab">
-    <span href="#" class=tab-${headlineData.category}>${headlineData.tab}</span>
+    <span href="#" class=tab-headline>${headlineData.category}</span>
     </div>
     <h2>${headlineData.title}</h2>
 
@@ -51,7 +51,7 @@ function renderLatestList() {
                     <div class="index-articles-info">
                         <h3>${article.title}</h3>
                         <div class="tab">
-                            <span href="#" class="">${article.tab}</span>
+                            <span href="#" class="">${article.category}</span>
                         </div>                       
                     </div>
 
@@ -76,7 +76,7 @@ function renderNewsList() {
                     <div class="index-articles-info">
                         <h3>${article.title}</h3>
                         <div class="tab">
-                            <span href="#" class="">${article.tab}</span>
+                            <span href="#" class="">${article.category}</span>
                         </div>                       
                     </div>
 
@@ -101,7 +101,7 @@ function renderColumnsList() {
                     <div class="index-articles-info">
                         <h3>${article.title}</h3>
                         <div class="tab">
-                            <span href="#" class="">${article.tab}</span>
+                            <span href="#" class="">${article.category}</span>
                         </div>                       
                     </div>
                 </a>
@@ -126,7 +126,7 @@ function renderReviewList() {
                             <h3>${article.title}</h3>
                         </div>
                         <div class="tab">
-                            <span href="#" class="tab-news">${article.tab}</span>
+                            <span href="#" class="tab-news">${article.category}</span>
                         </div>
                     </a>
                 </li>`;
@@ -149,7 +149,7 @@ function renderPreorderList() {
           <h3>${article.title}</h3>
         </div>
         <div class="tab">
-          <span href="#" class="tab-news">${article.tab}</span>
+          <span href="#" class="tab-news">${article.category}</span>
         </div>
       </a>
     </li>`;

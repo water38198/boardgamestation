@@ -20,6 +20,7 @@ function getCategory() {
             )
             .then((res) => {
                 renderCategory(res.data);
+                // 找不到
                 if (res.data.length === 0) {
                     articleList.innerHTML = `<div class="cantFind">
                                             <h3>
@@ -37,11 +38,12 @@ function getCategory() {
     } else {
         //分類文章
         let articlesData = [];
-        const category = location.href.split("?")[1].split("&name=")[0];
-        const name = decodeURI(location.href.split("?")[1].split("&name=")[1]);
-        categoryTitle.innerHTML = `<img src="img/icon-title mark.png" alt="">${name}`;
+        let category = decodeURI(location.href.split("?category=")[1]);
+        category = category.replace("&category=", "");
+        console.log(category.substring(0, 2));
+        categoryTitle.innerHTML = `<img src="img/icon-title mark.png" alt="">${category}`;
         //如果是最新消息，直接將所有文章排序
-        if (category === "category=latest") {
+        if (category === "最新消息") {
             axios
                 .get(`${api_path}/articles?_sort=timestap&_order=desc`)
                 .then((res) => {
@@ -51,7 +53,13 @@ function getCategory() {
         } else {
             axios
                 .get(
-                    `${api_path}/articles?${category}&_sort=timestap&_order=desc`
+                    `${api_path}/articles?category=${category.substring(
+                        0,
+                        2
+                    )}&category=${category.substring(
+                        2,
+                        4
+                    )}&_sort=timestap&_order=descs`
                 )
                 .then((res) => {
                     articlesData = res.data;
@@ -62,6 +70,7 @@ function getCategory() {
 }
 
 function renderCategory(data) {
+    console.log(data);
     let str = "";
     data.forEach((article) => {
         str += `                    <li>
@@ -72,7 +81,7 @@ function renderCategory(data) {
             
             <div class="article-content">${article.content}</div>
             <div class="article-tab">
-                <span>${article.tab}</span>
+                <span>${article.category}</span>
             </div>
         </div>
         </a>

@@ -16,7 +16,7 @@
 }
 
 .category-title img {
-    width: 36px;
+    width: 40px;
     height: 36px;
     margin-right: 8px;
 }
@@ -65,7 +65,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     margin-bottom: 10px;
     margin-right: 20px;
