@@ -1,3 +1,39 @@
+* {
+    color: #424242;
+}
+
+h1 {
+    font-size: 40px;
+    line-height: 120%;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 32px;
+    line-height: 120%;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 28px;
+    line-height: 120%;
+    font-weight: bold;
+}
+
+p {
+    line-height: 120%;
+}
+
+
+
+
+
+
+
+
+
+
+
 .article-main {
     max-width: 1300px;
     margin: 0 auto;

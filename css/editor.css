@@ -1,0 +1,85 @@
+.editor-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    color: #4e4e4e;
+}
+
+.editor-head {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.editor-input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.editor-form label {
+    font-size: 32px;
+    margin-right: 10px;
+}
+
+.editor-title-input {
+    height: 48px;
+    width: 400px;
+    padding-left: 10px;
+    border: #737373 2px solid;
+    font-size: 24px;
+}
+
+#title {
+    flex-grow: 1;
+}
+
+.editor-select {
+    width: 100px;
+    font-size: 20px;
+    color: #4e4e4e;
+    height: 48px;
+    border: #737373 2px solid;
+    padding-left: 10px;
+}
+
+.editor-select option {
+    font-size: 20px;
+    color: #4e4e4e;
+    padding-left: 10px;
+}
+
+.editor-input-container.editor-tag label {
+    font-size: 20px;
+}
+
+.editor-input-container.editor-tag input {
+    font-size: 16px;
+    max-width: 20%;
+    margin-right: 5px;
+}
+
+.send-btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.send-btn {
+    min-width: 225px;
+    min-height: 48px;
+    background-color: #4e4e4e;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+
+/* CKEitor */
+.ck-editor__editable_inline {
+    min-height: 400px;
+}

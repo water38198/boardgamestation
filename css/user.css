@@ -189,12 +189,18 @@ main {
 
 
 .user-table thead th {
-
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-weight: 700;
+    background-color: #ccc;
 }
 
 .user-table thead tr:first-child {
     text-align: left;
+}
+
+.user-table thead tr th:first-child {
+    text-align: center;
 }
 
 .user-table tbody {
@@ -250,4 +256,19 @@ main {
 
 .user-table .table-delAll {
     color: #737373;
+}
+
+.create-btn-container {
+    text-align: center;
+}
+
+.create-btn {
+    min-width: 100px;
+    min-height: 48px;
+    background-color: #4e4e4e;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }

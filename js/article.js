@@ -49,7 +49,9 @@ function renderArticle() {
     const tagData = articleData.tag;
     if (tagData.length > 0) {
         tagData.forEach((tag) => {
-            tagStr += `<a href="category.html?q=${tag}"><img src="img/icon-tag.png" alt="">${tag}</a>`;
+            if (tag !== "") {
+                tagStr += `<a href="category.html?q=${tag}"><img src="img/icon-tag.png" alt="">${tag}</a>`;
+            }
         });
     }
     let str = `

@@ -177,9 +177,11 @@ function renderUserBookmark() {
                         <tr>
                             <td  class="table-title"> <a href="article.html?articleId=${
                                 item.article.id
-                            }"><img src=${item.article.imgUrl} alt="">${
-            item.article.title
-        }</a></td>
+                            }"><img src=${
+            item.article.imgUrl === undefined
+                ? "img/icon-imageError.png"
+                : item.article.imgUrl
+        } alt="">${item.article.title}</a></td>
                             <td class="table-time">${timeTrans(
                                 item.timestap
                             )}</td>
@@ -251,16 +253,18 @@ function renderMyArticles() {
                         <tr>
                             <td  class="table-title"> <a href="article.html?articleId=${
                                 article.id
-                            }"><img src=${article.imgUrl} alt="">${
-                article.title
-            }</a></td>
+                            }"><img src=${
+                article.imgUrl === undefined
+                    ? "img/icon-imageError.png"
+                    : article.imgUrl
+            } alt="">${article.title}</a></td>
                             <td class="table-time">${timeTrans(
                                 article.timestap
                             )}</td>
                             <td>
-                            <a href="" class="table-edit" data-id=${
+                            <a href="editor.html?id=${
                                 article.id
-                            }>修改</a>
+                            }" class="table-edit" >修改</a>
                             <a href="" class="table-del" data-id=${
                                 article.id
                             }>刪除</a>
@@ -288,12 +292,16 @@ function renderMyArticles() {
                                     <th>總共有${myArticlesData.length} 篇文章</th>
                                     <td></td>
                                     <td>
-                                        
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
+                    <div class="create-btn-container">
+                    <input type="button" value="新增文章" class="create-btn">
+                    </div>
+                            
+
     `;
     });
 }
@@ -308,13 +316,6 @@ userMain.addEventListener("click", (e) => {
         e.preventDefault();
         const id = e.target.getAttribute("data-id");
         deleteMyArticle(id);
-    } else if (
-        e.target.nodeName === "A" &&
-        e.target.textContent === "修改" &&
-        userBookmarkData.length !== 0
-    ) {
-        e.preventDefault();
-        editMyArticle();
     }
 });
 
@@ -330,9 +331,11 @@ function renderAllArticles() {
                         <tr>
                             <td  class="table-title"> <a href="article.html?articleId=${
                                 article.id
-                            }"><img src=${article.imgUrl} alt="">${
-                article.title
-            }</a></td>
+                            }"><img src=${
+                article.imgUrl === undefined
+                    ? "img/icon-imageError.png"
+                    : article.imgUrl
+            } alt="">${article.title}</a></td>
                             <td class="table-time">${timeTrans(
                                 article.timestap
                             )}</td>
@@ -381,6 +384,7 @@ userMain.addEventListener("click", (e) => {
         e.target.textContent === "刪除" &&
         type === "manage-allArticles"
     ) {
+        e.preventDefault();
         const id = e.target.getAttribute("data-id");
         deleteArticle(id);
     }
@@ -702,4 +706,11 @@ logoutBtn.addEventListener("click", (e) => {
     e.preventDefault();
     location.href = "login.html";
     localStorage.clear();
+});
+
+//新增文章 ※因為元素是後來才新增，直接抓DOM會抓不到
+userMain.addEventListener("click", (e) => {
+    if (e.target.nodeName === "INPUT" && e.target.value === "新增文章") {
+        location.href = "editor.html";
+    }
 });
