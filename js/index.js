@@ -65,7 +65,7 @@ function renderNewsList() {
     const newsList = document.querySelector(".news .index-articles-list");
     let str = "";
     const newsListData = articlesData.filter(
-        (article) => article.category === "news"
+        (article) => article.category === "新聞"
     );
     newsListData.forEach((article) => {
         str += `<li>
@@ -90,7 +90,7 @@ function renderColumnsList() {
     const columnsList = document.querySelector(".columns .index-articles-list");
     let str = "";
     const newsListData = articlesData.filter(
-        (article) => article.category === "columns"
+        (article) => article.category === "專欄" || article.category === "閒聊"
     );
     newsListData.forEach((article) => {
         str += `<li>
@@ -114,7 +114,7 @@ function renderColumnsList() {
 function renderReviewList() {
     const reviewList = document.querySelector(".unboxings ul");
     const reviewListData = articlesData.filter(
-        (article) => article.category === "review"
+        (article) => article.category === "評測" || article.category === "開箱"
     );
     let str = "";
     const top5 = reviewListData.slice(-5).reverse();
@@ -137,7 +137,7 @@ function renderReviewList() {
 function renderPreorderList() {
     const preorderList = document.querySelector(".preorders ul");
     const preorderListData = articlesData.filter(
-        (article) => article.category === "preorder"
+        (article) => article.category === "集資" || article.category === "預購"
     );
     let str = "";
     const top5 = preorderListData.slice(0, 5);
@@ -161,7 +161,7 @@ function renderPreorderList() {
 function renderRookieList() {
     const rookieList = document.querySelector(".rookie ul");
     const rookieListData = articlesData.filter(
-        (article) => article.category === "rookie"
+        (article) => article.category === "入門"
     );
 
     let str = "";

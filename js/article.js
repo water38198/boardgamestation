@@ -54,13 +54,15 @@ function renderArticle() {
             }
         });
     }
+    console.log(articleData.category);
     let str = `
                         <ul class="article-breadcrumbs">
                         <li><a href="index.html">首頁</a></li>
                         <li><a href="category.html?category=${
                             articleData.category
-                        }&name=${articleData.tab}">${articleData.tab}</a></li>
-                        <li class="active">  ${articleData.title}</li>
+                        }">${articleData.category}</a></li>
+
+                        <li class="active">${articleData.title}</li>
                     </ul>
                     <h1 class="article-title">${articleData.title}</h1>
                     <ul class="article-info">
