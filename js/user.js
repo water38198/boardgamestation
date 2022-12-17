@@ -170,7 +170,7 @@ function pageRederType(type, page) {
     }
 }
 
-//點擊頁數
+//點擊頁數???
 userMainFooter.addEventListener("click", (e) => {
     e.preventDefault();
     if (e.target.nodeName === "A") {
@@ -315,7 +315,7 @@ function renderUserBookmark(data) {
         `;
     });
     userMainHeader.innerHTML = `<h2><img src="img/bookmark.png">收藏文章</h2>
-                                <p>你可以在這裡編輯個人資訊</p>`;
+                                <p>你可以在這裡編輯個人書籤</p>`;
     userMainContent.innerHTML = `
                     <div>
                         <table class="user-table">
