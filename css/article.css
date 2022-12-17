@@ -101,9 +101,6 @@ p {}
     margin-bottom: 40px;
 }
 
-.article-img img {
-    max-width: 60%;
-}
 
 .article-content p {
     font-size: 1.25rem;
@@ -133,10 +130,6 @@ p {}
 @media (max-width:992px) {
     .article-main {
         padding-top: 80px;
-    }
-
-    .article-img img {
-        min-width: 70%;
     }
 }
 

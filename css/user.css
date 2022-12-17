@@ -71,6 +71,7 @@ main {
 .user-sidebar-logout {
     margin-top: auto;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .user-sidebar-logout a {
@@ -103,6 +104,7 @@ main {
     background-color: #fff;
     padding: 20px 30px;
     flex-grow: 1;
+    max-width: 100%;
 }
 
 .user-main h2 {
@@ -155,6 +157,11 @@ main {
     border: #737373 1px solid;
 }
 
+.user-input-container p {
+    font-size: 14px;
+    color: #c72424;
+}
+
 .user-profile-btn input {
     font-size: 18px;
     padding: 5px 10px;
@@ -181,6 +188,10 @@ main {
     color: #4e4e4e;
     text-align: center;
     width: 100%;
+    display: table;
+    overflow-x: auto;
+    white-space: nowrap;
+    table-layout: fixed;
 }
 
 .user-table thead {
@@ -193,6 +204,7 @@ main {
     padding-bottom: 10px;
     font-weight: 700;
     background-color: #ccc;
+    text-align: center;
 }
 
 .user-table thead tr:first-child {
@@ -201,6 +213,7 @@ main {
 
 .user-table thead tr th:first-child {
     text-align: center;
+    width: 60%;
 }
 
 .user-table tbody {
@@ -215,7 +228,15 @@ main {
     padding-top: 10px;
     padding-bottom: 5px;
     padding-right: 10px;
-    text-align-last: left;
+    text-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table-time {
+    font-size: 16px;
 }
 
 .user-table tbody a {
@@ -238,6 +259,13 @@ main {
     align-items: center;
 }
 
+.table-title a span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .table-title img {
     width: 30px;
     height: 30px;
@@ -254,7 +282,14 @@ main {
     padding-bottom: 20px;
 }
 
-.user-table .table-delAll {
+.table-delAll-container {
+    text-align: right;
+    margin-right: 20px;
+}
+
+
+
+.table-delAll {
     color: #737373;
 }
 
@@ -271,4 +306,118 @@ main {
     border-radius: 5px;
     border: none;
     cursor: pointer;
+}
+
+.user-table.user-manage thead tr th:first-child {
+    width: 25%;
+}
+
+
+
+
+
+@media (max-width:1300px) {
+    .user-container {
+        margin-left: 30px;
+    }
+
+    .user-table thead tr th:first-child {
+        width: 55%;
+    }
+
+    .table-title a {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
+@media (max-width:992px) {
+
+    .user-container {
+        padding-top: 40px;
+    }
+
+    .user-main {
+        margin-left: 30px;
+    }
+
+    .user-sidebar {
+        margin-top: 20px;
+    }
+
+    .table-title {
+        width: 100px;
+    }
+
+    .table-title a {
+
+        font-size: 16px;
+    }
+
+    .table-time {
+        font-size: 14px;
+    }
+
+    .table-edit {
+        display: flex;
+    }
+
+    .user-table tbody td {
+        padding-top: 5px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .user-table thead th {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .table-edit {
+        margin-right: 5px;
+        justify-content: center;
+    }
+
+    .table-del,
+    .table-edit {
+        font-size: 14px;
+
+    }
+
+    .user-table tfoot th {
+        padding-top: 20px;
+    }
+}
+
+
+@media (max-width:768px) {
+    .user-main {
+        margin-left: 10px;
+        padding: 20px 10px;
+    }
+
+    .user-sidebar h3 img {
+        width: 30px;
+    }
+
+    .user-sidebar h3 {
+        font-size: 20px;
+    }
+
+    .sidebar-email {
+        font-size: 10px;
+    }
+
+    .user-table thead th {
+        font-size: 16px;
+    }
+
+    .create-btn {
+        font-size: 16px;
+        min-height: 24px;
+    }
+
+
 }

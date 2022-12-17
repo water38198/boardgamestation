@@ -125,18 +125,20 @@ function renderUserProfile() {
                         <div class="user-input-label">
                             <label for="userpassword">密碼：</label>
                         </div>
-                        <input type="password" value=${userProfileData.password} id ="userPassword" disabled>
+                        <input type="password" value=${userProfileData.password} id ="userPassword" disabled name="密碼">
                         <a href="" data-type="userPassword">變更</a>
+                        <p data-message="密碼"></p>
                     </div>
                     <div class="user-input-container">
                         <div class="user-input-label">
                             <label for="userNickname">暱稱：</label>
                         </div>
-                        <input type="text" value=${userProfileData.nickname} id ="userNickname" disabled>
+                        <input type="text" value=${userProfileData.nickname} id ="userNickname" disabled name="暱稱">
                         <a href="" data-type="userNickname">變更</a>
+                        <p data-message="暱稱"></p>
                     </div>
                     <div class="user-input-container user-profile-btn">
-                        <input type="button" value="確定" class="confirm-btn">
+                        <input type="button" value="確定" class="confirm-btn" disabled="disabled">
                         <input type="button" value="取消" class="cancel-btn">
                     </div>
                 </form>
@@ -181,7 +183,7 @@ function renderUserBookmark() {
             item.article.imgUrl === undefined
                 ? "img/icon-imageError.png"
                 : item.article.imgUrl
-        } alt="">${item.article.title}</a></td>
+        } alt=""><span>${item.article.title}</span></a></td>
                             <td class="table-time">${timeTrans(
                                 item.timestap
                             )}</td>
@@ -211,11 +213,11 @@ function renderUserBookmark() {
                                     <th>已收藏${userBookmarkData.length}篇文章</th>
                                     <td></td>
                                     <td>
-                                        <a href="" class="table-delAll">刪除全部</a>
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
+                    <div class="table-delAll-container"><a href="" class="table-delAll">刪除全部</a></div>
                     </div>
     `;
 }
@@ -257,11 +259,11 @@ function renderMyArticles() {
                 article.imgUrl === undefined
                     ? "img/icon-imageError.png"
                     : article.imgUrl
-            } alt="">${article.title}</a></td>
+            } alt=""><span>${article.title}<span></a></td>
                             <td class="table-time">${timeTrans(
                                 article.timestap
                             )}</td>
-                            <td>
+                            <td class="table-edit">
                             <a href="editor.html?id=${
                                 article.id
                             }" class="table-edit" >修改</a>
@@ -275,7 +277,7 @@ function renderMyArticles() {
         userMain.innerHTML = `
                         <h2><img src="img/icon-myprofile.png" alt="">我的文章</h2>
                     <p>您可以在這裡查看、修改、刪除自己的文章</p>
-                    <div>
+                    <div class="table-container">
                         <table class="user-table">
                             <thead>
                                 <tr>
@@ -335,7 +337,7 @@ function renderAllArticles() {
                 article.imgUrl === undefined
                     ? "img/icon-imageError.png"
                     : article.imgUrl
-            } alt="">${article.title}</a></td>
+            } alt=""><span>${article.title}</span></a></td>
                             <td class="table-time">${timeTrans(
                                 article.timestap
                             )}</td>
@@ -420,12 +422,12 @@ function renderAllUsers() {
                         <h2><img src="img/icon-myprofile.png" alt="">會員管理</h2>
                     <p>您可以在這裡查看、移除所有會員</p>
                     <div>
-                        <table class="user-table">
+                        <table class="user-table user-manage">
                             <thead>
                                 <tr>
                                     <th>Email</th>
                                     <th>暱稱</th>
-                                    <th>上次登入時間</th>              
+                                    <th>上次登入</th>              
                                     <th>建立時間</th>
                                     <th>編輯</th>
                                 </tr>
@@ -479,6 +481,8 @@ function editProfile(e) {
     if (e.target.getAttribute("data-type") === "userPassword") {
         targetEl.value = "";
     }
+    //讓確定按鈕可以被點擊
+    document.querySelector(".confirm-btn").removeAttribute("disabled");
 }
 
 // 確認修改
@@ -486,9 +490,36 @@ function confirmProfile() {
     const newPassword = document.querySelector("#userPassword").value;
     const newNickname = document.querySelector("#userNickname").value;
     const newData = {};
+    const constraints = {
+        密碼: {
+            presence: {
+                message: "不可以空白",
+            },
+            length: {
+                minimum: 6,
+                message: "至少為6個字以上",
+            },
+        },
+        暱稱: {
+            presence: {
+                message: "不可以空白",
+            },
+        },
+    };
+    const userForm = document.querySelector(".user-form");
+    const err = validate(userForm, constraints);
     //不得為空、密碼不得小於6字
-    if (newPassword === "" || newNickname === "" || newPassword.length < 6) {
-        return alert("修改資訊有誤");
+    if (err) {
+        console.log(validate(userForm, constraints));
+        // 先清空所有紅字提示
+        document.querySelectorAll(".user-input-container p").forEach((p) => {
+            p.textContent = "";
+        });
+        const errArr = Object.entries(err);
+        errArr.forEach((err) => {
+            const message = document.querySelector(`p[data-message=${err[0]}]`);
+            message.textContent = err[1];
+        });
     } else {
         // 密碼有更改
         if (newPassword !== userProfileData.password) {
@@ -537,6 +568,10 @@ function cancelProfile() {
     nicknameInput.value = userProfileData.nickname;
     document.querySelectorAll(".user-input-container a").forEach((a) => {
         a.setAttribute("style", "display:inline;");
+    });
+    document.querySelector(".confirm-btn").setAttribute("disabled", "disabled");
+    document.querySelectorAll(".user-input-container p").forEach((p) => {
+        p.textContent = "";
     });
 }
 

@@ -59,7 +59,7 @@ function getCategory() {
                     )}&category=${category.substring(
                         2,
                         4
-                    )}&_sort=timestap&_order=descs`
+                    )}&_sort=timestap&_order=desc`
                 )
                 .then((res) => {
                     articlesData = res.data;

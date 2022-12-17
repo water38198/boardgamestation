@@ -192,7 +192,7 @@ nav {
     display: flex;
     max-height: 100%;
     margin-right: auto;
-    transition: max-height 1.5s;
+    transition: max-height 1s;
 }
 
 .nav-tab {
@@ -330,12 +330,12 @@ nav {
 
 .nav-list.menu-show {
     max-height: 400px;
-    transition: all 1.5s;
+    transition: all 1s;
 }
 
 .nav-search.search-show {
     max-width: 180px;
-    transition: all 1.5s;
+    transition: all 1s;
 }
 
 

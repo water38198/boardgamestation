@@ -265,7 +265,7 @@
       "isAdmin": true,
       "id": 1,
       "createdTimestap": 1669651200000,
-      "loggedTimestap": 1671207352482
+      "loggedTimestap": 1671259661577
     },
     {
       "email": "test123@gmail.com",
@@ -292,7 +292,7 @@
       "isAdmin": false,
       "id": 4,
       "createdTimestap": 1670860800000,
-      "loggedTimestap": 0
+      "loggedTimestap": 1671242918321
     },
     {
       "email": "test963@gmail.com",
@@ -334,6 +334,24 @@
       "timestap": 1671121633663,
       "articleId": "7",
       "id": 5
+    },
+    {
+      "userId": "4",
+      "timestap": 1671243911758,
+      "articleId": "16",
+      "id": 6
+    },
+    {
+      "userId": "4",
+      "timestap": 1671243917369,
+      "articleId": "1",
+      "id": 7
+    },
+    {
+      "userId": "1",
+      "timestap": 1671249449518,
+      "articleId": "1",
+      "id": 8
     }
   ]
 }
