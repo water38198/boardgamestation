@@ -40,7 +40,6 @@ function getCategory() {
         let articlesData = [];
         let category = decodeURI(location.href.split("?category=")[1]);
         category = category.replace("&category=", "");
-        console.log(category.substring(0, 2));
         categoryTitle.innerHTML = `<img src="img/icon-title mark.png" alt="">${category}`;
         //如果是最新消息，直接將所有文章排序
         if (category === "最新消息") {
@@ -70,7 +69,6 @@ function getCategory() {
 }
 
 function renderCategory(data) {
-    console.log(data);
     let str = "";
     data.forEach((article) => {
         str += `                    <li>

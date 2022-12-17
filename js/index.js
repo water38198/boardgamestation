@@ -51,7 +51,7 @@ function renderLatestList() {
                     <div class="index-articles-info">
                         <h3>${article.title}</h3>
                         <div class="tab">
-                            <span href="#" class="">${article.category}</span>
+                            <span class="tab-category">${article.category}</span>
                         </div>                       
                     </div>
 
@@ -76,7 +76,7 @@ function renderNewsList() {
                     <div class="index-articles-info">
                         <h3>${article.title}</h3>
                         <div class="tab">
-                            <span href="#" class="">${article.category}</span>
+                            <span class="tab-category">${article.category}</span>
                         </div>                       
                     </div>
 
@@ -101,7 +101,7 @@ function renderColumnsList() {
                     <div class="index-articles-info">
                         <h3>${article.title}</h3>
                         <div class="tab">
-                            <span href="#" class="">${article.category}</span>
+                            <span  class="tab-category">${article.category}</span>
                         </div>                       
                     </div>
                 </a>
@@ -117,7 +117,7 @@ function renderReviewList() {
         (article) => article.category === "評測" || article.category === "開箱"
     );
     let str = "";
-    const top5 = reviewListData.slice(-5).reverse();
+    const top5 = reviewListData.slice(0, 5);
     top5.forEach((article) => {
         str += `<li>
                     <a href="article.html?articleId=${article.id}">
@@ -126,7 +126,7 @@ function renderReviewList() {
                             <h3>${article.title}</h3>
                         </div>
                         <div class="tab">
-                            <span href="#" class="tab-news">${article.category}</span>
+                            <span class="tab-category">${article.category}</span>
                         </div>
                     </a>
                 </li>`;
@@ -149,7 +149,7 @@ function renderPreorderList() {
           <h3>${article.title}</h3>
         </div>
         <div class="tab">
-          <span href="#" class="tab-news">${article.category}</span>
+          <span href="#" class="tab-category">${article.category}</span>
         </div>
       </a>
     </li>`;
@@ -181,3 +181,13 @@ function renderRookieList() {
         rookieList.innerHTML = str;
     });
 }
+//點擊標籤
+document.querySelector("main").addEventListener("click", (e) => {
+    if (
+        e.target.classList.contains("tab-category") ||
+        e.target.classList.contains("tab-headline")
+    ) {
+        e.preventDefault();
+        location.href = `category.html?category=${e.target.textContent}`;
+    }
+});

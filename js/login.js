@@ -78,7 +78,7 @@ function sentData(e) {
                     icon: "success",
                     text: "即將返回上一頁",
                     showConfirmButton: false,
-                    timer: 2000,
+                    timer: 1500,
                 }).then(() => {
                     axios.patch(
                         `${api_path}/users/${localStorage.getItem("userId")}`,
