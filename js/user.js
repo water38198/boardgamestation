@@ -139,8 +139,9 @@ function pageRederType(type, page) {
         currentUseData = userBookmarkData;
         renderUserBookmark(userBookmarkData);
     } else if (
-        type === "manage-myArticles" &&
-        localStorage.getItem("auth") === "admin"
+        (type === "manage-myArticles" &&
+            localStorage.getItem("auth") === "admin") ||
+        localStorage.getItem("auth") === "writer"
     ) {
         axios.get(`${api_path}/users/${userId}/articles`).then((res) => {
             currentUseData = res.data;
