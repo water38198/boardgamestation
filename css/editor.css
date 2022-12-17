@@ -76,8 +76,55 @@
 }
 
 
+@media (max-width:992px) {
+    .editor-container {
+        padding-top: 80px;
+    }
 
+    .editor-form {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
 
+@media (max-width:768px) {
+    .editor-head {
+        font-size: 32px;
+    }
+
+    .editor-form label {
+        font-size: 24px;
+    }
+}
+
+@media (max-width:576px) {
+    .editor-container {
+        padding-top: 60px;
+    }
+
+    .editor-head {
+        font-size: 24px;
+    }
+
+    .editor-form label {
+        font-size: 20px;
+
+    }
+
+    .editor-title-input {
+        height: 30px;
+        font-size: 20px;
+    }
+
+    .editor-select {
+        height: 30px;
+    }
+
+    .send-btn {
+        font-size: 16px;
+        min-width: 150px;
+    }
+}
 
 /* CKEitor */
 .ck-editor__editable_inline {

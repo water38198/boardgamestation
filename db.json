@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "《Century 水晶之路：三部曲 繁體中文版》現正火熱預購中!!",
-      "content": "這次的水晶之路三部曲有這三款《水晶之路：晶石傳記》☃️《水晶之路：東方礦山☃️《水晶之路：三千世界》還記得好一段時之前，每天在那邊打璀璨跟香料的時候！偶然間看到了這個版本，那時想說真的好漂亮阿，可惜只有英文版的，現在某方面算是圓夢了。這次到了卡瓦尼亞的奇幻世界當中，作為商隊領袖踏上水晶貿易之路，我們要使用各種魔像去收集和交易水晶來換取財富。玩法跟《香料之路》是相同的，但漂亮精緻的卡片卻是大大大大升級啦！一開始很注重個人發展，但加入新擴充後就會變成更需要顧及其他對手的路線啦。第一部主要是構築和元素收集，第二部就加入了模組化板圖要建立路線，第三部增加了工人擺放要注重卡位等等的重點喔。遊戲人數：2-4人 遊戲時間：30-45分鐘",
+      "content": "<p>這次的水晶之路三部曲有這三款《水晶之路：晶石傳記》☃️《水晶之路：東方礦山☃️《水晶之路：三千世界》</p><p>還記得好一段時之前，每天在那邊打璀璨跟香料的時候！偶然間看到了這個版本，那時想說真的好漂亮阿，可惜只有英文版的，現在某方面算是圓夢了。這次到了卡瓦尼亞的奇幻世界當中，作為商隊領袖踏上水晶貿易之路，我們要使用各種魔像去收集和交易水晶來換取財富。玩法跟《香料之路》是相同的，但漂亮精緻的卡片卻是大大大大升級啦！一開始很注重個人發展，但加入新擴充後就會變成更需要顧及其他對手的路線啦。</p><p>第一部主要是構築和元素收集，第二部就加入了模組化板圖要建立路線，第三部增加了工人擺放要注重卡位等等的重點喔。</p><p>遊戲人數：2-4人 遊戲時間：30-45分鐘</p>",
       "link": "https://www.facebook.com/groups/223881365531974/posts/777853373468101/",
       "imgUrl": "img/article1.jpg",
       "category": "預購",
@@ -17,7 +17,7 @@
     {
       "id": 2,
       "title": "《兵馬俑（Terracotta Army）》中文版確定!!",
-      "content": "日前桌遊菜鳥宣布即將代理 Board&Dice 的強作《兵馬俑（Terracotta Army）》，喜歡中重策玩家可千萬不要錯過，不過發售日期目前尚未確定，小編將替各位緊盯接下來的消息",
+      "content": "<p>日前桌遊菜鳥宣布即將代理 Board&amp;Dice 的強作《兵馬俑（Terracotta Army）》，喜歡中重策玩家可千萬不要錯過，雖然目前評價有高有低，但是相信這是青菜蘿蔔各有所好的結果。</p><p>&nbsp;</p><p>發售日期目前尚未確定，如有最新消息也會馬上通知各位。</p>",
       "link": "",
       "imgUrl": "img/article2.webp",
       "category": "新聞",
@@ -31,7 +31,7 @@
     {
       "id": 3,
       "title": " 《Pakrs坦帕妮主題樂園》繁中版預購",
-      "content": "Tenpenny Pakrs坦帕妮主題樂園繁中版預購，借英文版的圖，實體全繁體中文，遊樂園主題板塊拼放策略新作，Vincent Dutrait精緻美術，👉2022年全球最熱門家庭遊戲👉BGG7.6高分",
+      "content": "<p>由嘴嘴桌遊獨家代理的Tenpenny Pakrs坦帕妮主題樂園，即將開始繁中版預購</p><p>借英文版的圖，實體全繁體中文，遊樂園主題板塊拼放策略新作，</p><p>Vincent Dutrait精緻美術，👉2022年全球最熱門家庭遊戲👉BGG7.6高分</p>",
       "link": "",
       "imgUrl": "img/article3.jpg",
       "category": "預購",
@@ -262,25 +262,25 @@
       "email": "water38198@gmail.com",
       "password": "$2a$10$2qDdSIuSu28gSnH4YCxiw.zHgUuyCsVBkMaOAaMjhQvj4vW3Ukzry",
       "nickname": "PayRoom",
-      "isAdmin": true,
+      "auth": "admin",
       "id": 1,
       "createdTimestap": 1669651200000,
-      "loggedTimestap": 1671259661577
+      "loggedTimestap": 1671264820352
     },
     {
       "email": "test123@gmail.com",
       "password": "$2a$10$t/WkeuNqQLnLUQShhVynO.A66HoOS4tSs3KKGgwFJVprS/cl6rrma",
       "nickname": "機器人一號",
-      "isAdmin": false,
+      "auth": "writer",
       "id": 2,
       "createdTimestap": 1670169606430,
-      "loggedTimestap": 1671121483567
+      "loggedTimestap": 1671264277850
     },
     {
       "email": "test456@gmai.com",
       "password": "$2a$10$TEThDDBGjshULm1qU50d/OYpYia.drkxNru.541NIVTXsaKLU0jZG",
       "nickname": "機器人2號",
-      "isAdmin": false,
+      "auth": "writer",
       "id": 3,
       "createdTimestap": 1670256000000,
       "loggedTimestap": 1671121618722
@@ -289,7 +289,7 @@
       "email": "test753@gmail.com",
       "password": "$2a$10$yihKFAzOfayXNid5y6JUJO26qTcPsOAOwdl1D7FyHzN0KSeUUEama",
       "nickname": "機器人3號",
-      "isAdmin": false,
+      "auth": "writer",
       "id": 4,
       "createdTimestap": 1670860800000,
       "loggedTimestap": 1671242918321
@@ -298,10 +298,27 @@
       "email": "test963@gmail.com",
       "password": "$2a$10$fcQDOUE6ljBnAbh0/efTBOGxe4W8Jv1AncategoryBqlQqLcRKaYOyM7ci",
       "nickname": "我不是機器人",
-      "isAdmin": false,
+      "auth": "writer",
       "createdTimestap": 1671119937652,
       "loggedTimestap": 0,
       "id": 5
+    },
+    {
+      "email": "user123@gmail.com",
+      "password": "$2a$10$g/YhabL15rhowtT2Ss/S.OKIVGtdf9Mg2P0ZFLm5CAQNcG4B9pP.G",
+      "nickname": "使用者一號",
+      "auth": "user",
+      "createdTimestap": 1671263547308,
+      "id": 6,
+      "loggedTimestap": 1671264799129
+    },
+    {
+      "email": "user456@gmail.com",
+      "password": "$2a$10$sS.ijUZrqkF1nLWnc4fB.eKuZAKo5C7iMkJ5qFJLVQjs8B4mL32vC",
+      "nickname": "使用者二號",
+      "auth": "user",
+      "createdTimestap": 1671263585844,
+      "id": 7
     }
   ],
   "bookmarks": [

@@ -50,11 +50,19 @@ function initUser() {
             renderSidebar();
 
             //是否為管理者
-            const isAdmin = userProfileData.isAdmin;
-            if (isAdmin) {
+            const auth = userProfileData.auth;
+            if (auth === "admin") {
                 //顯示後台管理頁面
                 const manageList = document.querySelector(".manage-list");
                 manageList.classList.add("toshow");
+                document.querySelectorAll(".manage-list li").forEach((li) => {
+                    li.classList.add("toshow");
+                });
+            } else if (auth === "writer") {
+                document.querySelector(".manage-list").classList.add("toshow");
+                document
+                    .querySelector(".manage-list li")
+                    .classList.add("toshow");
             }
             //判斷頁面
             type = location.href.split("?")[1] || "";
@@ -87,19 +95,19 @@ function filterType(type) {
         renderUserBookmark();
     } else if (
         type === "manage-myArticles" &&
-        localStorage.getItem("isAdmin") === "true"
+        localStorage.getItem("auth") === "admin"
     ) {
         renderMyArticles();
     } else if (type === "profile") {
         renderUserProfile();
     } else if (
         type === "manage-allArticles" &&
-        localStorage.getItem("isAdmin") === "true"
+        localStorage.getItem("auth") === "admin"
     ) {
         renderAllArticles();
     } else if (
         type === "manage-allUsers" &&
-        localStorage.getItem("isAdmin") === "true"
+        localStorage.getItem("auth") === "admin"
     ) {
         renderAllUsers();
     } else {
@@ -349,6 +357,27 @@ function renderAllArticles() {
                         </tr>
         `;
         });
+        let pageStr = "";
+        if (allArticlesData.length > 10) {
+            let pageTotalNum = Math.ceil(allArticlesData.length / 10);
+            let pagenumStr = "";
+            for (let i = 1; i <= pageTotalNum; i++) {
+                pagenumStr += `<li class="page-item"><a class="page-link" href="#">${i}</a></li>`;
+            }
+            pageStr = `                        <ul class="pagination">
+                            <li class="page-item">
+                            <a class="page-link" href="#">
+                                <span>&laquo;</span>
+                            </a>
+                            </li>
+                            ${pagenumStr}
+                            <li class="page-item">
+                            <a class="page-link" href="#">
+                                <span>&raquo;</span>
+                            </a>
+                            </li>
+                        </ul>`;
+        }
         userMain.innerHTML = `
                         <h2><img src="img/icon-myprofile.png" alt="">所有文章</h2>
                     <p>您可以在這裡查看、修改、刪除全部文章</p>
@@ -374,7 +403,11 @@ function renderAllArticles() {
                                 </tr>
                             </tfoot>
                         </table>
+                        <nav class="pageNav">
+                    ${pageStr}
+                    </nav>
                     </div>
+
     `;
     });
 }

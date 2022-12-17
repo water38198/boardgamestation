@@ -84,6 +84,8 @@ main {
     display: none;
 }
 
+
+
 .manage-list>span {
     text-align: center;
     margin-bottom: 20px;
@@ -95,6 +97,13 @@ main {
     display: flex;
 }
 
+.manage-list li {
+    display: none;
+}
+
+.manage-list li.toshow {
+    display: block;
+}
 
 
 
@@ -312,8 +321,18 @@ main {
     width: 25%;
 }
 
+.pageNav {
+    justify-content: center;
+}
 
+.pagination {
+    display: flex;
+}
 
+.page-item a {
+    color: #4e4e4e;
+    padding: .375rem .75rem;
+}
 
 
 @media (max-width:1300px) {

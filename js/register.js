@@ -65,7 +65,7 @@ function sentData(e) {
         obj.email = userEmail;
         obj.password = userPassword;
         obj.nickname = userNickname;
-        obj.isAdmin = false;
+        obj.auth = "user";
         obj.createdTimestap = Date.now();
         axios
             .post(`${api_path}/users`, obj)

@@ -70,7 +70,7 @@ function sentData(e) {
                 // 登入成功後將會員資料存放在localStorage
                 localStorage.setItem("token", res.data.accessToken);
                 localStorage.setItem("userId", res.data.user.id);
-                localStorage.setItem("isAdmin", res.data.user.isAdmin);
+                localStorage.setItem("auth", res.data.user.auth);
                 localStorage.setItem("userNickname", res.data.user.nickname);
                 // 成功結果提示
                 Swal.fire({
