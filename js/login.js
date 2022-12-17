@@ -79,9 +79,7 @@ function sentData(e) {
                     text: "即將返回上一頁",
                     showConfirmButton: false,
                     timer: 2000,
-                });
-                setTimeout(() => {
-                    // 加入登入時間
+                }).then(() => {
                     axios.patch(
                         `${api_path}/users/${localStorage.getItem("userId")}`,
                         {
@@ -95,9 +93,10 @@ function sentData(e) {
                             },
                         }
                     );
+                    location.reload();
                     gobackPage();
                     userInfoForm.reset();
-                }, 2000);
+                });
             })
             .catch((err) => {
                 // 錯誤失敗提示

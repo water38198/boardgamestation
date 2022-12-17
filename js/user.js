@@ -3,11 +3,14 @@ let userBookmarkData = [];
 let profileUrl = `${api_path}/600/users/${userId}`;
 let bookmarkUrl = `${api_path}/660/bookmarks?userId=${userId}&_expand=article`;
 let type = "";
+let currentUseData = [];
 const headers = {
     headers: {
         authorization: `Bearer ${token}`,
     },
 };
+const userMainFooter = document.querySelector(".user-main-footer");
+
 // 如果localStorage資料有缺失，先連結到登入頁面
 if (userId === "" || userNickname === "" || token === "") {
     errHappened();
@@ -66,7 +69,7 @@ function initUser() {
             }
             //判斷頁面
             type = location.href.split("?")[1] || "";
-            filterType(type);
+            filterInitType(type);
         })
         .catch((err) => {
             console.log(err);
@@ -89,39 +92,149 @@ function renderSidebar() {
     sidebarEmail.textContent = `${userProfileData.email}`;
 }
 
-// 判別目前頁面
-function filterType(type) {
+// 判別目前頁面進行初始化
+function filterInitType(type) {
     if (type === "bookmark") {
-        renderUserBookmark();
+        axios
+            .get(`${api_path}/660/bookmarks?userId=${userId}`, headers)
+            .then((res) => {
+                currentUseData = res.data;
+                renderUserBookmark(userBookmarkData);
+            });
     } else if (
         type === "manage-myArticles" &&
         localStorage.getItem("auth") === "admin"
     ) {
-        renderMyArticles();
+        axios.get(`${api_path}/users/${userId}/articles`).then((res) => {
+            currentUseData = res.data;
+            renderMyArticles(currentUseData);
+        });
     } else if (type === "profile") {
         renderUserProfile();
     } else if (
         type === "manage-allArticles" &&
         localStorage.getItem("auth") === "admin"
     ) {
-        renderAllArticles();
+        axios.get(`${api_path}/articles`).then((res) => {
+            currentUseData = res.data;
+            renderAllArticles(currentUseData);
+        });
     } else if (
         type === "manage-allUsers" &&
         localStorage.getItem("auth") === "admin"
     ) {
-        renderAllUsers();
+        axios.get(`${api_path}/660/users`, headers).then((res) => {
+            currentUseData = res.data;
+            renderAllUsers(currentUseData);
+        });
+    } else {
+        errHappened();
+        location.href = "index.html";
+    }
+
+    // 頁數產生
+}
+function pageRederType(type, page) {
+    if (type === "bookmark") {
+        currentUseData = userBookmarkData;
+        renderUserBookmark(userBookmarkData);
+    } else if (
+        type === "manage-myArticles" &&
+        localStorage.getItem("auth") === "admin"
+    ) {
+        axios.get(`${api_path}/users/${userId}/articles`).then((res) => {
+            currentUseData = res.data;
+            renderMyArticles(currentUseData);
+        });
+    } else if (type === "profile") {
+        renderUserProfile();
+    } else if (
+        type === "manage-allArticles" &&
+        localStorage.getItem("auth") === "admin"
+    ) {
+        axios.get(`${api_path}/articles`).then((res) => {
+            currentUseData = res.data;
+            renderAllArticles(currentUseData);
+        });
+    } else if (
+        type === "manage-allUsers" &&
+        localStorage.getItem("auth") === "admin"
+    ) {
+        axios.get(`${api_path}/660/users`, headers).then((res) => {
+            currentUseData = res.data;
+            renderAllUsers(currentUseData);
+        });
     } else {
         errHappened();
         location.href = "index.html";
     }
 }
 
-const userMain = document.querySelector(".user-main");
+//點擊頁數
+userMainFooter.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (e.target.nodeName === "A") {
+        const target = e.target;
+        // 點到同一個
+        if (target.classList.contains("active")) {
+            return;
+        }
+        //找出上一個
+        const activeTarget = [...document.querySelectorAll(".pagination a")]
+            .find((x) => x.classList.contains("active"))
+            .getAttribute("data-page");
+        console.log("之前是", activeTarget);
+
+        //目前點到
+        const value = target.getAttribute("data-page");
+        console.log("點到", value);
+
+        // 點到往前但已經是1，點到往後但已經是最後
+        if (
+            (value === "pre" && activeTarget === "1") ||
+            (value === "nxt" &&
+                activeTarget ===
+                    `${
+                        [...document.querySelectorAll(".pagination a")].length -
+                        2
+                    }`)
+        ) {
+            return;
+        } else if (value === "pre") {
+            document.querySelectorAll(".pagination a").forEach((a) => {
+                a.classList.remove("active");
+            });
+            document
+                .querySelector(`a[data-page='${activeTarget - 1}']`)
+                .classList.add("active");
+        } else if (value === "nxt") {
+            document.querySelectorAll(".pagination a").forEach((a) => {
+                a.classList.remove("active");
+            });
+            document
+                .querySelector(
+                    `.pagination a[data-page='${parseInt(activeTarget) + 1}']`
+                )
+                .classList.add("active");
+        } else {
+            document.querySelectorAll(".pagination a").forEach((a) => {
+                a.classList.remove("active");
+            });
+            target.classList.add("active");
+        }
+    }
+
+    //加上ACTIVE
+});
+
+// 各種渲染
+const userMainContent = document.querySelector(".user-main-content");
+const userMainHeader = document.querySelector(".user-main-header");
 //渲染個人檔案頁面
 function renderUserProfile() {
-    userMain.innerHTML = `
-                <h2>個人檔案</h2>
-                <p>你可以在這裡編輯個人資訊</p>
+    userMainHeader.innerHTML = `<h2><img src="img/folder.png">個人檔案</h2>
+                                <p>你可以在這裡編輯個人資訊</p>`;
+    userMainContent.innerHTML = `
                 <form action="" class="user-form">
                     <div class="user-input-container">
                         <div class="user-input-label">
@@ -154,7 +267,7 @@ function renderUserProfile() {
 }
 
 // 個人檔案頁面點擊事件;
-userMain.addEventListener("click", (e) => {
+userMainContent.addEventListener("click", (e) => {
     if (
         e.target.nodeName === "A" &&
         e.target.textContent === "變更" &&
@@ -180,9 +293,9 @@ userMain.addEventListener("click", (e) => {
 });
 
 // 渲染收藏文章(書籤)頁面
-function renderUserBookmark() {
+function renderUserBookmark(data) {
     let str = "";
-    userBookmarkData.forEach((item) => {
+    data.forEach((item) => {
         str += `
                         <tr>
                             <td  class="table-title"> <a href="article.html?articleId=${
@@ -201,9 +314,9 @@ function renderUserBookmark() {
                         </tr>
         `;
     });
-    userMain.innerHTML = `
-                    <h2>收藏文章</h2>
-                    <p>你可以在這裡查看、刪除已收藏的文章</p>
+    userMainHeader.innerHTML = `<h2><img src="img/bookmark.png">收藏文章</h2>
+                                <p>你可以在這裡編輯個人資訊</p>`;
+    userMainContent.innerHTML = `
                     <div>
                         <table class="user-table">
                             <thead>
@@ -225,12 +338,15 @@ function renderUserBookmark() {
                                 </tr>
                             </tfoot>
                         </table>
-                    <div class="table-delAll-container"><a href="" class="table-delAll">刪除全部</a></div>
+                        <div class="table-delAll-container">
+                            <a href="" class="table-delAll">刪除全部</a>
+                        </div>
                     </div>
     `;
+    userMainFooter.innerHTML = `${renderPagination(currentUseData)}`;
 }
 // 收藏文章點擊事件
-userMain.addEventListener("click", (e) => {
+userMainContent.addEventListener("click", (e) => {
     if (
         // 點擊單一刪除
         e.target.nodeName === "A" &&
@@ -252,22 +368,20 @@ userMain.addEventListener("click", (e) => {
 });
 
 // 渲染 我的文章
-function renderMyArticles() {
-    let myArticlesData = [];
-    axios.get(`${api_path}/users/${userId}/articles`).then((res) => {
-        myArticlesData = res.data;
-        console.log(myArticlesData);
-        let str = "";
-        myArticlesData.forEach((article) => {
-            str += `
-                        <tr>
-                            <td  class="table-title"> <a href="article.html?articleId=${
+function renderMyArticles(data) {
+    console.log(data);
+    let str = "";
+    data.forEach((article) => {
+        str += `
+                    <tr>
+                        <td  class="table-title">
+                            <a href="article.html?articleId=${
                                 article.id
                             }"><img src=${
-                article.imgUrl === undefined
-                    ? "img/icon-imageError.png"
-                    : article.imgUrl
-            } alt=""><span>${article.title}<span></a></td>
+            article.imgUrl === undefined
+                ? "img/icon-imageError.png"
+                : article.imgUrl
+        } alt=""><span>${article.title}<span></a></td>
                             <td class="table-time">${timeTrans(
                                 article.timestap
                             )}</td>
@@ -281,10 +395,10 @@ function renderMyArticles() {
                             </td>
                         </tr>
         `;
-        });
-        userMain.innerHTML = `
-                        <h2><img src="img/icon-myprofile.png" alt="">我的文章</h2>
-                    <p>您可以在這裡查看、修改、刪除自己的文章</p>
+    });
+    userMainHeader.innerHTML = `<h2><img src="img/icon-myprofile.png">我的文章</h2>
+                                    <p>你可以在這裡編輯自己的文章</p>`;
+    userMainContent.innerHTML = `
                     <div class="table-container">
                         <table class="user-table">
                             <thead>
@@ -299,7 +413,7 @@ function renderMyArticles() {
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>總共有${myArticlesData.length} 篇文章</th>
+                                    <th>總共有${data.length} 篇文章</th>
                                     <td></td>
                                     <td>
                                     </td>
@@ -309,14 +423,12 @@ function renderMyArticles() {
                     </div>
                     <div class="create-btn-container">
                     <input type="button" value="新增文章" class="create-btn">
-                    </div>
-                            
-
+                    </div>       
     `;
-    });
+    userMainFooter.innerHTML = `${renderPagination(currentUseData)}`;
 }
 //我的文章 點擊監聽
-userMain.addEventListener("click", (e) => {
+userMainContent.addEventListener("click", (e) => {
     if (
         // 點擊單一刪除
         e.target.nodeName === "A" &&
@@ -330,22 +442,18 @@ userMain.addEventListener("click", (e) => {
 });
 
 //渲染 所有文章
-function renderAllArticles() {
-    let allArticlesData = [];
-    axios.get(`${api_path}/articles`).then((res) => {
-        allArticlesData = res.data;
-        console.log(allArticlesData);
-        let str = "";
-        allArticlesData.forEach((article) => {
-            str += `
+function renderAllArticles(data) {
+    let str = "";
+    data.forEach((article) => {
+        str += `
                         <tr>
                             <td  class="table-title"> <a href="article.html?articleId=${
                                 article.id
                             }"><img src=${
-                article.imgUrl === undefined
-                    ? "img/icon-imageError.png"
-                    : article.imgUrl
-            } alt=""><span>${article.title}</span></a></td>
+            article.imgUrl === undefined
+                ? "img/icon-imageError.png"
+                : article.imgUrl
+        } alt=""><span>${article.title}</span></a></td>
                             <td class="table-time">${timeTrans(
                                 article.timestap
                             )}</td>
@@ -356,31 +464,11 @@ function renderAllArticles() {
                             </td>
                         </tr>
         `;
-        });
-        let pageStr = "";
-        if (allArticlesData.length > 10) {
-            let pageTotalNum = Math.ceil(allArticlesData.length / 10);
-            let pagenumStr = "";
-            for (let i = 1; i <= pageTotalNum; i++) {
-                pagenumStr += `<li class="page-item"><a class="page-link" href="#">${i}</a></li>`;
-            }
-            pageStr = `                        <ul class="pagination">
-                            <li class="page-item">
-                            <a class="page-link" href="#">
-                                <span>&laquo;</span>
-                            </a>
-                            </li>
-                            ${pagenumStr}
-                            <li class="page-item">
-                            <a class="page-link" href="#">
-                                <span>&raquo;</span>
-                            </a>
-                            </li>
-                        </ul>`;
-        }
-        userMain.innerHTML = `
-                        <h2><img src="img/icon-myprofile.png" alt="">所有文章</h2>
-                    <p>您可以在這裡查看、修改、刪除全部文章</p>
+    });
+    userMainHeader.innerHTML = `<h2><img src="img/icon-article.png">所有文章</h2>
+                                    <p>您可以在這裡查看、修改、刪除全部文章</p>`;
+    userMainContent.innerHTML = `
+
                     <div>
                         <table class="user-table">
                             <thead>
@@ -395,24 +483,20 @@ function renderAllArticles() {
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>總共有${allArticlesData.length} 篇文章</th>
+                                    <th>總共有${data.length} 篇文章</th>
                                     <td></td>
                                     <td>
-                                        
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
-                        <nav class="pageNav">
-                    ${pageStr}
-                    </nav>
                     </div>
 
     `;
-    });
+    userMainFooter.innerHTML += `${renderPagination(currentUseData)}`;
 }
 //所有文章 點擊事件
-userMain.addEventListener("click", (e) => {
+userMainContent.addEventListener("click", (e) => {
     if (
         // 點擊單一刪除
         e.target.nodeName === "A" &&
@@ -426,14 +510,11 @@ userMain.addEventListener("click", (e) => {
 });
 
 //渲染 會員管理
-function renderAllUsers() {
-    let allUsersData = [];
-    axios.get(`${api_path}/660/users`, headers).then((res) => {
-        allUsersData = res.data;
-        console.log(allUsersData);
-        let str = "";
-        allUsersData.forEach((user) => {
-            str += `
+function renderAllUsers(data) {
+    let str = "";
+
+    data.forEach((user) => {
+        str += `
                         <tr>
                             <td  class="table-title">${user.email}</td>
                             <td  class="">${user.nickname}</td>
@@ -450,10 +531,10 @@ function renderAllUsers() {
                             </td>
                         </tr>
         `;
-        });
-        userMain.innerHTML = `
-                        <h2><img src="img/icon-myprofile.png" alt="">會員管理</h2>
-                    <p>您可以在這裡查看、移除所有會員</p>
+    });
+    userMainHeader.innerHTML = `<h2><img src="img/icon-allUsers.png">會員管理</h2>
+                                    <p>您可以在這裡查看、移除所有會員</p>`;
+    userMainContent.innerHTML = `
                     <div>
                         <table class="user-table user-manage">
                             <thead>
@@ -470,7 +551,7 @@ function renderAllUsers() {
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>總共有${allUsersData.length} 位會員</th>
+                                    <th>總共有${data.length} 位會員</th>
                                     <td></td>
                                     <td>
                                         
@@ -480,11 +561,33 @@ function renderAllUsers() {
                         </table>
                     </div>
     `;
-    });
+    userMainFooter.innerHTML = `${renderPagination(currentUseData)}`;
+}
+//產生頁數
+function renderPagination(data) {
+    if (data.length <= 10) {
+        return "";
+    } else {
+        const pageNum = Math.ceil(data.length / 10);
+        console.log(pageNum);
+        let pageStr = `<a href="#"class="active" data-page=1>1</a>`;
+        for (let i = 2; i <= pageNum; i++) {
+            pageStr += `<a href="#" data-page=${i} >${i}</a>`;
+        }
+        let str = `
+                    <div class="pagination-container">
+                        <div class="pagination">
+                            <a href="#" data-page="pre">&laquo;</a>
+                            ${pageStr}
+                            <a href="#" data-page="nxt">&raquo;</a>
+                        </div>
+                        </div>`;
+        return str;
+    }
 }
 
 //會員管理 點擊事件
-userMain.addEventListener("click", (e) => {
+userMainContent.addEventListener("click", (e) => {
     if (
         // 點擊單一刪除
         e.target.nodeName === "A" &&
@@ -496,6 +599,7 @@ userMain.addEventListener("click", (e) => {
         deleteUser(id);
     }
 });
+
 //修改會員資料
 function editProfile(e) {
     // 選取到該input(password、nickname)
@@ -706,7 +810,7 @@ function deleteMyArticle(id) {
                 icon: "success",
                 confirmButtonColor: "#737373",
             });
-            renderMyArticles();
+            renderMyArticles(currentUseData);
         }
     });
 }
@@ -735,7 +839,7 @@ function deleteArticle(id) {
                 icon: "success",
                 confirmButtonColor: "#737373",
             });
-            renderAllArticles();
+            renderAllArticles(currentUseData);
         }
     });
 }
@@ -777,7 +881,7 @@ logoutBtn.addEventListener("click", (e) => {
 });
 
 //新增文章 ※因為元素是後來才新增，直接抓DOM會抓不到
-userMain.addEventListener("click", (e) => {
+userMainContent.addEventListener("click", (e) => {
     if (e.target.nodeName === "INPUT" && e.target.value === "新增文章") {
         location.href = "editor.html";
     }

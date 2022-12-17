@@ -15,7 +15,7 @@ main {
 
 
 .user-sidebar {
-    width: 180px;
+    min-width: 180px;
     display: flex;
     flex-direction: column;
 }
@@ -287,7 +287,7 @@ main {
 }
 
 .user-table tfoot th {
-    padding-top: 80px;
+    padding-top: 40px;
     padding-bottom: 20px;
 }
 
@@ -303,7 +303,7 @@ main {
 }
 
 .create-btn-container {
-    text-align: center;
+    text-align: right;
 }
 
 .create-btn {
@@ -321,17 +321,30 @@ main {
     width: 25%;
 }
 
-.pageNav {
-    justify-content: center;
+.pagination-container {
+    text-align: center;
 }
 
 .pagination {
-    display: flex;
+    display: inline-block;
 }
 
-.page-item a {
-    color: #4e4e4e;
-    padding: .375rem .75rem;
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #737373;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
 }
 
 

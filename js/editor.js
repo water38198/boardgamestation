@@ -95,11 +95,12 @@ function sendArticle() {
     });
     const newArticl = {
         title: document.querySelector("#title").value,
-        tab: document.querySelector("#tab").value,
+        category: document.querySelector("#tab").value,
         tag: tags,
         timestap: Date.now(),
         userId: localStorage.getItem("userId"),
         content: editor.getData(),
+        imgUrl: "",
     };
 
     // 標題或內容為空時跳出警告
