@@ -117,6 +117,6 @@ function gobackPage() {
     if (referer.includes("register.html")) {
         history.go(-2);
     } else {
-        history.back();
+        location.href(document.referrer);
     }
 }
