@@ -20,7 +20,7 @@ const constraints = {
 };
 // 避免從登入→ 註冊 → 登入
 if (token !== "") {
-    history.go(-1);
+    location.href = "index.html";
 }
 // 預防表單按Enter鍵時會將資料submit
 const form = document.querySelector(".userInfo-form");
@@ -117,6 +117,6 @@ function gobackPage() {
     if (referer.includes("register.html")) {
         history.go(-2);
     } else {
-        location.href(document.referrer);
+        location.href = referer;
     }
 }

@@ -25,6 +25,8 @@ function renderHeadline() {
         "style",
         `background-image:url(${headlineData.imgUrl})`
     );
+    //左滑進特效
+
     latestHeadline.innerHTML = `        <a
     href="article.html?articleId=${headlineData.id}"
     style="background: linear-gradient(
@@ -63,6 +65,7 @@ function renderLatestList() {
 // 新聞列表
 function renderNewsList() {
     const newsList = document.querySelector(".news .index-articles-list");
+    document;
     let str = "";
     const newsListData = articlesData.filter(
         (article) => article.category === "新聞"
