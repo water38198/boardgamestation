@@ -13,7 +13,7 @@ const userMainFooter = document.querySelector(".user-main-footer");
 
 // 如果localStorage資料有缺失，先連結到登入頁面
 if (userId === "" || userNickname === "" || token === "") {
-    errHappened();
+    // errHappened();
 } else {
     // 初始化
     initUser();
@@ -75,9 +75,9 @@ function initUser() {
             console.log(err);
             console.log(err.response.data);
             if (err.response.data === "jwt expired") {
-                errHappened("閒置過久麻煩重新登入");
+                // errHappened("閒置過久麻煩重新登入");
             } else {
-                errHappened();
+                // errHappened();
             }
         });
 }
@@ -128,7 +128,7 @@ function filterInitType(type) {
             renderAllUsers(currentUseData);
         });
     } else {
-        errHappened();
+        // errHappened();
         location.href = "index.html";
     }
 
@@ -166,7 +166,7 @@ function pageRederType(type, page) {
             renderAllUsers(currentUseData);
         });
     } else {
-        errHappened();
+        // errHappened();
         location.href = "index.html";
     }
 }
