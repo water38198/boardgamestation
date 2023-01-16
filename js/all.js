@@ -1,4 +1,11 @@
-// RWD nav列
+const api_path = "https://json-server-vercel-iota.vercel.app";
+// const api_path = "http://localhost:3000";
+
+//時間轉換
+function timeTrans(num) {
+    const date = new Date(num);
+    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+}
 //點擊後展開nav
 const hamMenu = document.querySelector(".ham-menu-button");
 hamMenu.addEventListener("click", function (e) {
@@ -39,7 +46,7 @@ searchInput.addEventListener("keydown", (e) => {
 const dropList = document.querySelector(".nav-user-dropList ul");
 
 // 載入localStorage參數，如果沒有設為空字串
-token = localStorage.getItem("token") || "";
+let token = localStorage.getItem("token") || "";
 const userId = localStorage.getItem("userId") || "";
 const userNickname = localStorage.getItem("userNickname") || "";
 const userEmail = localStorage.getItem("userEmail") || "";

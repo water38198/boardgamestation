@@ -1,9 +1,16 @@
-let userProfileData = [];
-let userBookmarkData = [];
 let profileUrl = `${api_path}/600/users/${userId}`;
 let bookmarkUrl = `${api_path}/660/bookmarks?userId=${userId}&_expand=article`;
-let type = "";
+
+let userProfileData = [];
+let userBookmarkData = [];
 let currentUseData = [];
+// const api_path = "http://localhost:3000";
+
+//時間轉換
+function timeTrans(num) {
+    const date = new Date(num);
+    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+}
 const headers = {
     headers: {
         authorization: `Bearer ${token}`,

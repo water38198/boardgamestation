@@ -54,7 +54,6 @@ function renderArticle() {
             }
         });
     }
-    console.log(articleData.category);
     let str = `
                         <ul class="article-breadcrumbs">
                         <li><a href="index.html">首頁</a></li>
@@ -89,7 +88,6 @@ function renderArticle() {
     // 收藏狀態
     const addBookmark = document.querySelector(".add-bookmark");
     const removeBookmark = document.querySelector(".remove-bookmark");
-    console.log(addBookmark);
     //如果沒登入
     if (token === "") {
         addBookmark.classList.add("toshow");
@@ -98,7 +96,6 @@ function renderArticle() {
         // 戳一下API看書籤裡面有沒有這篇文章
         axios.get(thisBookmarkUrl, headers).then((res) => {
             hasthisBookmark = res.data;
-            console.log(hasthisBookmark);
             // 有此書籤顯示紅愛心
             if (hasthisBookmark.length !== 0) {
                 removeBookmark.classList.add("toshow");
@@ -126,7 +123,6 @@ function renderArticle() {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                console.log(res);
                 addBookmark.classList.toggle("toshow");
                 removeBookmark.classList.toggle("toshow");
                 hasthisBookmark.push(res.data);
